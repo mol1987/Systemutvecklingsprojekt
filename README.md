@@ -1,5 +1,8 @@
 # Systemutvecklingsprojekt 
 
+## Upphovsman
+Grupp 3
+
 ## Projektupplägg
 
 Projekt skall utföras med metoden scrum. Lärarna kommer agera beställare av ett system. Funktionella krav kan komma att ändras/läggas till under utförandet av projektet. Projektet delas upp i sprintar som börjar den första lektionen i veckan. Projektet avslutas med en slutpresentation (se slutpresentation).
