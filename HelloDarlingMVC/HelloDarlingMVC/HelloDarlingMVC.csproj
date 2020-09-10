@@ -5,7 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
+    <Compile Remove="Migrations\20200910122256_InitialDBCreation.cs" />
+    <Compile Remove="Migrations\20200910122256_InitialDBCreation.Designer.cs" />
+    <Compile Remove="Migrations\20200910124750_AddedRelations.cs" />
+    <Compile Remove="Migrations\20200910124750_AddedRelations.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>
