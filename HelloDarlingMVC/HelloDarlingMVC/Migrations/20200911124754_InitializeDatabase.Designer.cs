@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HelloDarlingMVC.Migrations
 {
     [DbContext(typeof(HelloDarlingContext))]
-    [Migration("20200910125436_InitializeDatabase")]
+    [Migration("20200911124754_InitializeDatabase")]
     partial class InitializeDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,10 +23,8 @@ namespace HelloDarlingMVC.Migrations
 
             modelBuilder.Entity("HelloDarlingMVC.Models.Appearance", b =>
                 {
-                    b.Property<int>("AppearanceId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.Property<string>("HairColor")
                         .HasColumnType("varchar(32)");
@@ -34,17 +32,15 @@ namespace HelloDarlingMVC.Migrations
                     b.Property<int>("Height")
                         .HasColumnType("int");
 
-                    b.HasKey("AppearanceId");
+                    b.HasKey("UserId");
 
                     b.ToTable("Appearance");
                 });
 
             modelBuilder.Entity("HelloDarlingMVC.Models.Interests", b =>
                 {
-                    b.Property<int>("InterestsId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Books")
                         .HasColumnType("varchar(32)");
@@ -67,17 +63,18 @@ namespace HelloDarlingMVC.Migrations
                     b.Property<string>("TVgame")
                         .HasColumnType("varchar(32)");
 
-                    b.HasKey("InterestsId");
+                    b.HasKey("UserId");
 
                     b.ToTable("Interests");
                 });
 
             modelBuilder.Entity("HelloDarlingMVC.Models.Match", b =>
                 {
-                    b.Property<int>("MatchId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("UserMatchingId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserMatcheeId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Favorite")
                         .HasColumnType("int");
@@ -85,33 +82,54 @@ namespace HelloDarlingMVC.Migrations
                     b.Property<DateTime>("MatchDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("MatchingUserId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("MatchId");
+                    b.HasKey("UserMatchingId", "UserMatcheeId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("Match");
                 });
 
-            modelBuilder.Entity("HelloDarlingMVC.Models.Preference", b =>
+            modelBuilder.Entity("HelloDarlingMVC.Models.Messages", b =>
                 {
-                    b.Property<int>("PreferenceId")
+                    b.Property<int>("MessagesId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("JoinDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("MessageStatus")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("MessagesId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Messages");
+                });
+
+            modelBuilder.Entity("HelloDarlingMVC.Models.Preference", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
-                    b.HasKey("PreferenceId");
+                    b.Property<int>("PreferenceId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId");
 
                     b.ToTable("Preference");
                 });
@@ -132,8 +150,7 @@ namespace HelloDarlingMVC.Migrations
                         .HasColumnType("varchar(32)");
 
                     b.Property<int>("Gender")
-                        .HasColumnType("int")
-                        .HasMaxLength(3);
+                        .HasColumnType("int");
 
                     b.Property<string>("IdentityNO")
                         .IsRequired()
@@ -155,31 +172,36 @@ namespace HelloDarlingMVC.Migrations
                         .HasColumnType("varchar(64)");
 
                     b.Property<int>("Status")
-                        .HasColumnType("int")
-                        .HasMaxLength(3);
-
-                    b.Property<int?>("UserAppearanceAppearanceId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserInterestsInterestsId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UserPreferencePreferenceId")
-                        .HasColumnType("int");
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("varchar(32)");
 
                     b.Property<int>("UsersCategory")
-                        .HasColumnType("int")
-                        .HasMaxLength(5);
+                        .HasColumnType("int");
 
                     b.HasKey("UserId");
 
-                    b.HasIndex("UserAppearanceAppearanceId");
-
-                    b.HasIndex("UserInterestsInterestsId");
-
-                    b.HasIndex("UserPreferencePreferenceId");
-
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("HelloDarlingMVC.Models.Appearance", b =>
+                {
+                    b.HasOne("HelloDarlingMVC.Models.User", "user")
+                        .WithOne("UserAppearance")
+                        .HasForeignKey("HelloDarlingMVC.Models.Appearance", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("HelloDarlingMVC.Models.Interests", b =>
+                {
+                    b.HasOne("HelloDarlingMVC.Models.User", "user")
+                        .WithOne("UserInterests")
+                        .HasForeignKey("HelloDarlingMVC.Models.Interests", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("HelloDarlingMVC.Models.Match", b =>
@@ -189,43 +211,20 @@ namespace HelloDarlingMVC.Migrations
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("HelloDarlingMVC.Models.User", b =>
+            modelBuilder.Entity("HelloDarlingMVC.Models.Messages", b =>
                 {
-                    b.HasOne("HelloDarlingMVC.Models.Appearance", "UserAppearance")
-                        .WithMany()
-                        .HasForeignKey("UserAppearanceAppearanceId");
+                    b.HasOne("HelloDarlingMVC.Models.User", null)
+                        .WithMany("UserMessages")
+                        .HasForeignKey("UserId");
+                });
 
-                    b.HasOne("HelloDarlingMVC.Models.Interests", "UserInterests")
-                        .WithMany()
-                        .HasForeignKey("UserInterestsInterestsId");
-
-                    b.HasOne("HelloDarlingMVC.Models.Preference", "UserPreference")
-                        .WithMany()
-                        .HasForeignKey("UserPreferencePreferenceId");
-
-                    b.OwnsMany("HelloDarlingMVC.Models.Messages", "UserMessages", b1 =>
-                        {
-                            b1.Property<int>("UserId")
-                                .HasColumnType("int");
-
-                            b1.Property<int>("MessagesId")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int")
-                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                            b1.Property<DateTime>("JoinDate")
-                                .HasColumnType("datetime2");
-
-                            b1.Property<int>("MessageStatus")
-                                .HasColumnType("int");
-
-                            b1.HasKey("UserId", "MessagesId");
-
-                            b1.ToTable("Messages");
-
-                            b1.WithOwner()
-                                .HasForeignKey("UserId");
-                        });
+            modelBuilder.Entity("HelloDarlingMVC.Models.Preference", b =>
+                {
+                    b.HasOne("HelloDarlingMVC.Models.User", "user")
+                        .WithOne("UserPreference")
+                        .HasForeignKey("HelloDarlingMVC.Models.Preference", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

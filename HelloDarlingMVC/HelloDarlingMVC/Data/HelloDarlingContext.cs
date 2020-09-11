@@ -24,10 +24,11 @@ namespace HelloDarlingMVC.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().OwnsMany<Messages>(p => p.UserMessages);
-            modelBuilder.Entity<User>().HasOne<Interests>(p => p.UserInterests);
-            modelBuilder.Entity<User>().HasOne<Preference>(p => p.UserPreference);
-            modelBuilder.Entity<User>().HasOne<Appearance>(p => p.UserAppearance);
+            modelBuilder.Entity<User>().HasOne<Interests>(p => p.UserInterests).WithOne(e => e.user);
+            modelBuilder.Entity<User>().HasOne<Preference>(p => p.UserPreference).WithOne(e => e.user);
+            modelBuilder.Entity<User>().HasOne<Appearance>(p => p.UserAppearance).WithOne(e => e.user);
+
+            modelBuilder.Entity<Match>().HasKey(vf => new { vf.UserMatchingId, vf.UserMatcheeId });
         }
     }
 }

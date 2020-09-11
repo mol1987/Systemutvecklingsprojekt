@@ -9,7 +9,10 @@ namespace HelloDarlingMVC.Models
 {
     public class Interests
     {
-        public int InterestsId { get; set; }
+        [Key]
+        public int UserId { get; set; }
+        public User user { get; set; }
+
         [Column(TypeName = "varchar(32)")]
         public string Sports { get; set; }
         [Column(TypeName = "varchar(32)")]
