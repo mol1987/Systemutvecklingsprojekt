@@ -106,12 +106,15 @@ namespace HelloDarlingMVC.Migrations
                     b.Property<int>("MessageStatus")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("ReceiverId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SenderId")
                         .HasColumnType("int");
 
                     b.HasKey("MessagesId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("SenderId");
 
                     b.ToTable("Messages");
                 });
@@ -135,9 +138,7 @@ namespace HelloDarlingMVC.Migrations
             modelBuilder.Entity("HelloDarlingMVC.Models.User", b =>
                 {
                     b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -211,9 +212,11 @@ namespace HelloDarlingMVC.Migrations
 
             modelBuilder.Entity("HelloDarlingMVC.Models.Messages", b =>
                 {
-                    b.HasOne("HelloDarlingMVC.Models.User", null)
+                    b.HasOne("HelloDarlingMVC.Models.User", "Sender")
                         .WithMany("UserMessages")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("SenderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("HelloDarlingMVC.Models.Preference", b =>
@@ -222,6 +225,15 @@ namespace HelloDarlingMVC.Migrations
                         .WithOne("UserPreference")
                         .HasForeignKey("HelloDarlingMVC.Models.Preference", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("HelloDarlingMVC.Models.User", b =>
+                {
+                    b.HasOne("HelloDarlingMVC.Models.Messages", null)
+                        .WithOne("Receiver")
+                        .HasForeignKey("HelloDarlingMVC.Models.User", "UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

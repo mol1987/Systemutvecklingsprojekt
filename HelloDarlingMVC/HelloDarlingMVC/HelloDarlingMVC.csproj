@@ -13,6 +13,14 @@
     <Compile Remove="Migrations\20200910125436_InitializeDatabase.Designer.cs" />
     <Compile Remove="Migrations\20200911121404_AddedPK.cs" />
     <Compile Remove="Migrations\20200911121404_AddedPK.Designer.cs" />
+    <Compile Remove="Migrations\20200911124754_InitializeDatabase.cs" />
+    <Compile Remove="Migrations\20200911124754_InitializeDatabase.Designer.cs" />
+    <Compile Remove="Migrations\20200912181633_AddMessagesNav.cs" />
+    <Compile Remove="Migrations\20200912181633_AddMessagesNav.Designer.cs" />
+    <Compile Remove="Migrations\20200912181849_InitializeDatabase.cs" />
+    <Compile Remove="Migrations\20200912181849_InitializeDatabase.Designer.cs" />
+    <Compile Remove="Migrations\20200912183603_InitializeDatabase.cs" />
+    <Compile Remove="Migrations\20200912183603_InitializeDatabase.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

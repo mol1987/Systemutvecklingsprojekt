@@ -11,8 +11,7 @@ namespace HelloDarlingMVC.Migrations
                 name: "User",
                 columns: table => new
                 {
-                    UserId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(nullable: false),
                     UserName = table.Column<string>(type: "varchar(32)", nullable: false),
                     IdentityNO = table.Column<string>(type: "varchar(12)", nullable: false),
                     FirstName = table.Column<string>(type: "varchar(32)", nullable: false),
@@ -101,19 +100,20 @@ namespace HelloDarlingMVC.Migrations
                 {
                     MessagesId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    SenderId = table.Column<int>(nullable: false),
+                    ReceiverId = table.Column<int>(nullable: false),
                     JoinDate = table.Column<DateTime>(nullable: false),
-                    MessageStatus = table.Column<int>(nullable: false),
-                    UserId = table.Column<int>(nullable: true)
+                    MessageStatus = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Messages", x => x.MessagesId);
                     table.ForeignKey(
-                        name: "FK_Messages_User_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Messages_User_SenderId",
+                        column: x => x.SenderId,
                         principalTable: "User",
                         principalColumn: "UserId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -141,13 +141,24 @@ namespace HelloDarlingMVC.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Messages_UserId",
+                name: "IX_Messages_SenderId",
                 table: "Messages",
-                column: "UserId");
+                column: "SenderId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_User_Messages_UserId",
+                table: "User",
+                column: "UserId",
+                principalTable: "Messages",
+                principalColumn: "MessagesId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Messages_User_SenderId",
+                table: "Messages");
+
             migrationBuilder.DropTable(
                 name: "Appearance");
 
@@ -158,13 +169,13 @@ namespace HelloDarlingMVC.Migrations
                 name: "Match");
 
             migrationBuilder.DropTable(
-                name: "Messages");
-
-            migrationBuilder.DropTable(
                 name: "Preference");
 
             migrationBuilder.DropTable(
                 name: "User");
+
+            migrationBuilder.DropTable(
+                name: "Messages");
         }
     }
 }
