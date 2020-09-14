@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using HelloDarlingMVC.Models;
 using System.Linq;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace HelloDarlingMVC.Data
 {
-    public class HelloDarlingContext : DbContext
+    public class HelloDarlingContext : IdentityDbContext
 	{
 		public HelloDarlingContext(DbContextOptions options) : base(options) { }
 		// here goes all the table of the database
@@ -28,7 +29,7 @@ namespace HelloDarlingMVC.Data
             modelBuilder.Entity<User>().HasMany<Messages>(p => p.UserMessages).WithOne(e => e.Sender).HasForeignKey(e => e.SenderId).HasConstraintName("FK_Messages_Sender");
             modelBuilder.Entity<User>().HasMany<Messages>(p => p.UserMessages).WithOne(e => e.Receiver).HasForeignKey(e => e.ReceiverId).HasConstraintName("FK_Messages_Receiver");
             */
-
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<User>().HasOne<Interests>(p => p.UserInterests).WithOne(e => e.user);
             modelBuilder.Entity<User>().HasOne<Preference>(p => p.UserPreference).WithOne(e => e.user);
             modelBuilder.Entity<User>().HasOne<Appearance>(p => p.UserAppearance).WithOne(e => e.user);
