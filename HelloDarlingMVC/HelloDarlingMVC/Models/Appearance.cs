@@ -4,7 +4,11 @@ namespace HelloDarlingMVC.Models
 {
     public class Appearance
     {
-        public int AppearanceId { get; set; }
+        [Key]
+        public int UserId { get; set; }
+        public User user { get; set; }
+
+
         [Column(TypeName = "varchar(32)")]
         public string HairColor { get; set; }
         public int Height { get; set; }
