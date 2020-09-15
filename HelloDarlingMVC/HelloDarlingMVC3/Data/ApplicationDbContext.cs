@@ -31,7 +31,7 @@ namespace HelloDarlingMVC3.Data
             modelBuilder.Entity<ProfileModel>().HasOne(e => e.UserPreference).WithOne(e => e.ProfileModel).HasForeignKey<ProfileModel>(f => f.Id);
             modelBuilder.Entity<ProfileModel>().HasOne(e => e.UserAppearance).WithOne(e => e.ProfileModel).HasForeignKey<ProfileModel>(f => f.Id);
             modelBuilder.Entity<ProfileModel>().HasOne(e => e.UserInterests).WithOne(e => e.ProfileModel).HasForeignKey<ProfileModel>(f => f.Id);
-            modelBuilder.Entity<ProfileModel>().HasOne(e => e.IdentityUser).WithOne().HasForeignKey<IdentityUser>(f => f.Id).OnDelete(DeleteBehavior.Cascade);
+            //modelBuilder.Entity<ProfileModel>().HasOne(e => e.IdentityUser).WithOne().HasForeignKey<IdentityUser>(f => f.Id).OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<ConversationsMessages>().HasKey(x => new { x.ConversationsId, x.MessageID });
             
             modelBuilder.Entity<ConversationsMessages>()

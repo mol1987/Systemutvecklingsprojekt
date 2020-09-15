@@ -12,7 +12,7 @@ namespace HelloDarlingMVC3.Models
     {
         [Key]
         public string Id { get; set; }
-        public IdentityUser IdentityUser { get; set; }
+        //public IdentityUser IdentityUser { get; set; }
 
 
         [Required]
