@@ -30,7 +30,7 @@ namespace HelloDarlingMVC3.Controllers
         }
 
         // GET: ProfileModels/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string id)
         {
             if (id == null)
             {
@@ -90,7 +90,7 @@ namespace HelloDarlingMVC3.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id")] ProfileModel profileModel)
+        public async Task<IActionResult> Edit(string id, [Bind("Id")] ProfileModel profileModel)
         {
             if (id != profileModel.Id)
             {
@@ -121,7 +121,7 @@ namespace HelloDarlingMVC3.Controllers
         }
 
         // GET: ProfileModels/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
             {
@@ -149,7 +149,7 @@ namespace HelloDarlingMVC3.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ProfileModelExists(int id)
+        private bool ProfileModelExists(string id)
         {
             return _context.ProfileModel.Any(e => e.Id == id);
         }
