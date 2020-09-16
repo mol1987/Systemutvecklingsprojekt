@@ -8,6 +8,12 @@
   <ItemGroup>
     <Compile Remove="Data\Migrations\20200915132423_AddedTables.cs" />
     <Compile Remove="Data\Migrations\20200915132423_AddedTables.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200915132635_AddedTables.cs" />
+    <Compile Remove="Data\Migrations\20200915132635_AddedTables.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200915134751_DeleteForeignKeyIdentityUser.cs" />
+    <Compile Remove="Data\Migrations\20200915134751_DeleteForeignKeyIdentityUser.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200916115147_AddedGuid.cs" />
+    <Compile Remove="Data\Migrations\20200916115147_AddedGuid.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

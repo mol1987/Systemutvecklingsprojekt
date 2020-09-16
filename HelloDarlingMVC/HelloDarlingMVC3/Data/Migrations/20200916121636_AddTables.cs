@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HelloDarlingMVC3.Data.Migrations
 {
-    public partial class AddedTables : Migration
+    public partial class AddTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,7 +11,7 @@ namespace HelloDarlingMVC3.Data.Migrations
                 name: "Appearance",
                 columns: table => new
                 {
-                    ProfileModelId = table.Column<string>(nullable: false),
+                    ProfileModelId = table.Column<Guid>(nullable: false),
                     HairColor = table.Column<string>(type: "varchar(32)", nullable: true)
                 },
                 constraints: table =>
@@ -23,9 +23,8 @@ namespace HelloDarlingMVC3.Data.Migrations
                 name: "Conversations",
                 columns: table => new
                 {
-                    ConversationsId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    MessagesId = table.Column<int>(nullable: false)
+                    ConversationsId = table.Column<Guid>(nullable: false),
+                    MessagesId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -36,7 +35,7 @@ namespace HelloDarlingMVC3.Data.Migrations
                 name: "Interests",
                 columns: table => new
                 {
-                    ProfileModelId = table.Column<string>(nullable: false),
+                    ProfileModelId = table.Column<Guid>(nullable: false),
                     Sports = table.Column<string>(type: "varchar(32)", nullable: true),
                     Music = table.Column<string>(type: "varchar(32)", nullable: true),
                     Movies = table.Column<string>(type: "varchar(32)", nullable: true),
@@ -54,7 +53,7 @@ namespace HelloDarlingMVC3.Data.Migrations
                 name: "Preference",
                 columns: table => new
                 {
-                    ProfileModelId = table.Column<string>(nullable: false),
+                    ProfileModelId = table.Column<Guid>(nullable: false),
                     Age = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -66,7 +65,7 @@ namespace HelloDarlingMVC3.Data.Migrations
                 name: "ProfileModel",
                 columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     IdentityNO = table.Column<string>(type: "varchar(12)", nullable: false),
                     FirstName = table.Column<string>(type: "varchar(32)", nullable: false),
                     LastName = table.Column<string>(type: "varchar(32)", nullable: false),
@@ -103,8 +102,8 @@ namespace HelloDarlingMVC3.Data.Migrations
                 name: "Match",
                 columns: table => new
                 {
-                    Profile1Id = table.Column<string>(nullable: false),
-                    Profile2Id = table.Column<string>(nullable: false),
+                    Profile1Id = table.Column<Guid>(nullable: false),
+                    Profile2Id = table.Column<Guid>(nullable: false),
                     MatchDate = table.Column<DateTime>(nullable: false),
                     Favorite = table.Column<int>(nullable: false),
                     Status = table.Column<int>(nullable: false)
@@ -130,13 +129,12 @@ namespace HelloDarlingMVC3.Data.Migrations
                 name: "Messages",
                 columns: table => new
                 {
-                    MessageID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    SenderId = table.Column<string>(nullable: true),
+                    MessageID = table.Column<Guid>(nullable: false),
+                    SenderId = table.Column<Guid>(nullable: false),
                     MessageDate = table.Column<DateTime>(nullable: false),
                     MessageStatus = table.Column<int>(nullable: false),
-                    ConversationsId = table.Column<int>(nullable: true),
-                    ProfileModelId = table.Column<string>(nullable: true)
+                    ConversationsId = table.Column<Guid>(nullable: true),
+                    ProfileModelId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -159,8 +157,8 @@ namespace HelloDarlingMVC3.Data.Migrations
                 name: "UserConversation",
                 columns: table => new
                 {
-                    ProfileModelId = table.Column<string>(nullable: false),
-                    ConversationsId = table.Column<int>(nullable: false)
+                    ProfileModelId = table.Column<Guid>(nullable: false),
+                    ConversationsId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -183,8 +181,8 @@ namespace HelloDarlingMVC3.Data.Migrations
                 name: "ConversationsMessages",
                 columns: table => new
                 {
-                    ConversationsId = table.Column<int>(nullable: false),
-                    MessageID = table.Column<int>(nullable: false)
+                    ConversationsId = table.Column<Guid>(nullable: false),
+                    MessageID = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -227,22 +225,10 @@ namespace HelloDarlingMVC3.Data.Migrations
                 name: "IX_UserConversation_ConversationsId",
                 table: "UserConversation",
                 column: "ConversationsId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_AspNetUsers_ProfileModel_Id",
-                table: "AspNetUsers",
-                column: "Id",
-                principalTable: "ProfileModel",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_AspNetUsers_ProfileModel_Id",
-                table: "AspNetUsers");
-
             migrationBuilder.DropTable(
                 name: "ConversationsMessages");
 

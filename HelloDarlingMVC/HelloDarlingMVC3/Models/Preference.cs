@@ -9,7 +9,7 @@ namespace HelloDarlingMVC3.Models
     public class Preference
     {
         [Key]
-        public string ProfileModelId { get; set; }
+        public Guid ProfileModelId { get; set; }
         public ProfileModel ProfileModel { get; set; }
 
         public int Age { get; set; }

@@ -25,12 +25,19 @@ namespace HelloDarlingMVC3.Controllers
         // GET: ProfileModels
         public async Task<IActionResult> Index()
         {
-            var email=User.Claims.FirstOrDefault(x => x.Type==ClaimTypes.Name);
-            return View(await _context.ProfileModel.ToListAsync());
+            var userID=User.Claims.FirstOrDefault(x => x.Type==ClaimTypes.NameIdentifier);
+            var profile = _context.ProfileModel.FirstOrDefault(x => x.Id.Equals(userID));
+
+            if (profile ==null)
+            {
+                profile = new ProfileModel();
+            }
+            
+            return View(profile);
         }
 
         // GET: ProfileModels/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(Guid id)
         {
             if (id == null)
             {
@@ -38,7 +45,7 @@ namespace HelloDarlingMVC3.Controllers
             }
 
             var profileModel = await _context.ProfileModel
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.Id.Equals(id));
             if (profileModel == null)
             {
                 return NotFound();
@@ -90,7 +97,7 @@ namespace HelloDarlingMVC3.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id")] ProfileModel profileModel)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id")] ProfileModel profileModel)
         {
             if (id != profileModel.Id)
             {
@@ -121,7 +128,7 @@ namespace HelloDarlingMVC3.Controllers
         }
 
         // GET: ProfileModels/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             if (id == null)
             {
@@ -129,7 +136,7 @@ namespace HelloDarlingMVC3.Controllers
             }
 
             var profileModel = await _context.ProfileModel
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.Id.Equals(id));
             if (profileModel == null)
             {
                 return NotFound();
@@ -149,9 +156,9 @@ namespace HelloDarlingMVC3.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ProfileModelExists(string id)
+        private bool ProfileModelExists(Guid id)
         {
-            return _context.ProfileModel.Any(e => e.Id == id);
+            return _context.ProfileModel.Any(e => e.Id.Equals(id));
         }
     }
 }

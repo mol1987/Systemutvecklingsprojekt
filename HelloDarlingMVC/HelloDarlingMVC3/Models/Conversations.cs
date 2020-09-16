@@ -7,9 +7,9 @@ namespace HelloDarlingMVC3.Models
 {
     public class Conversations
     {
-        public int ConversationsId { get; set; }
+        public Guid ConversationsId { get; set; }
 
-        public int MessagesId { get; set; }
+        public Guid MessagesId { get; set; }
 
         public List<Messages> Messages { get; set; }
 

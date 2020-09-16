@@ -10,10 +10,10 @@ namespace HelloDarlingMVC3.Models
     public class Messages
     {
         [Key]
-        public int MessageID { get; set; }
+        public Guid MessageID { get; set; }
 
         [ForeignKey("ProfileModelID")]
-        public string SenderId { get; set; }
+        public Guid SenderId { get; set; }
 
         ProfileModel Sender { get; set; }
 

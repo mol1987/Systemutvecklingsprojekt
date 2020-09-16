@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HelloDarlingMVC3.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200915134751_DeleteForeignKeyIdentityUser")]
-    partial class DeleteForeignKeyIdentityUser
+    [Migration("20200916121636_AddTables")]
+    partial class AddTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,8 +23,9 @@ namespace HelloDarlingMVC3.Data.Migrations
 
             modelBuilder.Entity("HelloDarlingMVC3.Models.Appearance", b =>
                 {
-                    b.Property<string>("ProfileModelId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("ProfileModelId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("HairColor")
                         .HasColumnType("varchar(32)");
@@ -36,13 +37,12 @@ namespace HelloDarlingMVC3.Data.Migrations
 
             modelBuilder.Entity("HelloDarlingMVC3.Models.Conversations", b =>
                 {
-                    b.Property<int>("ConversationsId")
+                    b.Property<Guid>("ConversationsId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("MessagesId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("MessagesId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ConversationsId");
 
@@ -51,11 +51,11 @@ namespace HelloDarlingMVC3.Data.Migrations
 
             modelBuilder.Entity("HelloDarlingMVC3.Models.ConversationsMessages", b =>
                 {
-                    b.Property<int>("ConversationsId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("ConversationsId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("MessageID")
-                        .HasColumnType("int");
+                    b.Property<Guid>("MessageID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ConversationsId", "MessageID");
 
@@ -66,8 +66,9 @@ namespace HelloDarlingMVC3.Data.Migrations
 
             modelBuilder.Entity("HelloDarlingMVC3.Models.Interests", b =>
                 {
-                    b.Property<string>("ProfileModelId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("ProfileModelId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Books")
                         .HasColumnType("varchar(32)");
@@ -97,11 +98,11 @@ namespace HelloDarlingMVC3.Data.Migrations
 
             modelBuilder.Entity("HelloDarlingMVC3.Models.Match", b =>
                 {
-                    b.Property<string>("Profile1Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Profile1Id")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Profile2Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Profile2Id")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Favorite")
                         .HasColumnType("int");
@@ -121,13 +122,12 @@ namespace HelloDarlingMVC3.Data.Migrations
 
             modelBuilder.Entity("HelloDarlingMVC3.Models.Messages", b =>
                 {
-                    b.Property<int>("MessageID")
+                    b.Property<Guid>("MessageID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("ConversationsId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("ConversationsId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("MessageDate")
                         .HasColumnType("datetime2");
@@ -135,11 +135,11 @@ namespace HelloDarlingMVC3.Data.Migrations
                     b.Property<int>("MessageStatus")
                         .HasColumnType("int");
 
-                    b.Property<string>("ProfileModelId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid?>("ProfileModelId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("SenderId")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("SenderId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("MessageID");
 
@@ -152,8 +152,9 @@ namespace HelloDarlingMVC3.Data.Migrations
 
             modelBuilder.Entity("HelloDarlingMVC3.Models.Preference", b =>
                 {
-                    b.Property<string>("ProfileModelId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("ProfileModelId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Age")
                         .HasColumnType("int");
@@ -165,8 +166,8 @@ namespace HelloDarlingMVC3.Data.Migrations
 
             modelBuilder.Entity("HelloDarlingMVC3.Models.ProfileModel", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -203,11 +204,11 @@ namespace HelloDarlingMVC3.Data.Migrations
 
             modelBuilder.Entity("HelloDarlingMVC3.Models.UserConversation", b =>
                 {
-                    b.Property<string>("ProfileModelId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("ProfileModelId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("ConversationsId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("ConversationsId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ProfileModelId", "ConversationsId");
 

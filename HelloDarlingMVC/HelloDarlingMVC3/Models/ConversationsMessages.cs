@@ -9,11 +9,11 @@ namespace HelloDarlingMVC3.Models
     public class ConversationsMessages
     {
         [Key]
-        public int ConversationsId { get; set; }
+        public Guid ConversationsId { get; set; }
         public Conversations Conversations { get; set; }
 
         [Key]
-        public int MessageID { get; set; }
+        public Guid MessageID { get; set; }
         public Messages Messages { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace HelloDarlingMVC3.Models
     public class ProfileModel
     {
         [Key]
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         //public IdentityUser IdentityUser { get; set; }
 
 
@@ -41,6 +41,8 @@ namespace HelloDarlingMVC3.Models
 
         [Required]
         public int Status { get; set; }
+
+        public string Bio { get; set; }
 
         public List<Match> Matches { get; set; } = new List<Match>();
         public List<Messages> UserMessages { get; set; } = new List<Messages>();

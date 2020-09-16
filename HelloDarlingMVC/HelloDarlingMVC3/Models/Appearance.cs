@@ -10,7 +10,7 @@ namespace HelloDarlingMVC3.Models
     public class Appearance
     {
         [Key]
-        public string ProfileModelId { get; set; }
+        public Guid ProfileModelId { get; set; }
         public ProfileModel ProfileModel { get; set; }
 
         [Column(TypeName = "varchar(32)")]
