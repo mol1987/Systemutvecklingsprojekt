@@ -12,11 +12,9 @@ namespace HelloDarlingMVC3.Models
     {
         [Key]
         public Guid Id { get; set; }
-        //public IdentityUser IdentityUser { get; set; }
-
 
         [Required]
-        [Column(TypeName = "varchar(12)")]
+        [Column(TypeName = "varchar(12)")] 
         public string IdentityNO { get; set; }
 
         [Required]
