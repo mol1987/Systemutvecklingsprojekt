@@ -9,6 +9,8 @@ using HelloDarlingMVC3.Data;
 using HelloDarlingMVC3.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace HelloDarlingMVC3.Controllers
 {
@@ -16,10 +18,12 @@ namespace HelloDarlingMVC3.Controllers
     public class ProfileModelsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public ProfileModelsController(ApplicationDbContext context)
+        public ProfileModelsController(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _hostEnvironment = webHostEnvironment;
         }
 
         // GET: ProfileModels
@@ -65,10 +69,21 @@ namespace HelloDarlingMVC3.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id")] ProfileModel profileModel)
-        {
+        public async Task<IActionResult> Create([Bind("Id, ImageFile")] ProfileModel profileModel)
+        {   
             if (ModelState.IsValid)
             {
+                // save image to wwwroot/Image
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(profileModel.ImageFile.FileName);
+                string extension = Path.GetExtension(profileModel.ImageFile.FileName);
+                profileModel.ImageName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                string path = Path.Combine(wwwRootPath + "/Image", fileName);
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    await profileModel.ImageFile.CopyToAsync(fileStream);
+                }
+
                 _context.Add(profileModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

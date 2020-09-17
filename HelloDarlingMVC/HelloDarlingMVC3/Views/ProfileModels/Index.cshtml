@@ -9,7 +9,19 @@
 
 <div class="container">
     <div class="row">
-        <div class="col">col</div>
+        <div class="col">
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="@Model.ImageFile" class="control-label"></label>
+                    <input asp-for="@Model.ImageFile" accept="image/*" />
+                    <span asp-validation-for="@Model.ImageFile" class=" text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
         <div class="col">
             <ul>
                 <li>

@@ -4,14 +4,16 @@ using HelloDarlingMVC3.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HelloDarlingMVC3.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200917120713_AddFileName")]
+    partial class AddFileName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -192,9 +194,6 @@ namespace HelloDarlingMVC3.Data.Migrations
                     b.Property<string>("IdentityNO")
                         .IsRequired()
                         .HasColumnType("varchar(12)");
-
-                    b.Property<string>("ImageName")
-                        .HasColumnType("varchar(100)");
 
                     b.Property<DateTime>("JoinDate")
                         .HasColumnType("datetime2");

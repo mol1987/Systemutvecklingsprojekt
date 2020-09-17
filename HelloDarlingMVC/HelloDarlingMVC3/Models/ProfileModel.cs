@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
 
 namespace HelloDarlingMVC3.Models
 {
@@ -43,6 +44,15 @@ namespace HelloDarlingMVC3.Models
         public int Status { get; set; }
 
         public string Bio { get; set; }
+
+        [Column(TypeName = "varchar(100)")]
+        public string FileName { get; set; }
+
+        [Column(TypeName = "varchar(100)")]
+        public string ImageName { get; set; }
+
+        [NotMapped]
+        public IFormFile ImageFile { get; set; }
 
         public List<Match> Matches { get; set; } = new List<Match>();
         public List<Messages> UserMessages { get; set; } = new List<Messages>();
