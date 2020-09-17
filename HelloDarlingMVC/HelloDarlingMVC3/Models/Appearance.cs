@@ -15,5 +15,11 @@ namespace HelloDarlingMVC3.Models
 
         [Column(TypeName = "varchar(32)")]
         public string HairColor { get; set; }
+
+        [Column(TypeName = "varchar(32)")]
+        public string EyeColor { get; set; }
+
+        [Column(TypeName = "varchar(32)")]
+        public string Height { get; set; }
     }
 }

@@ -12,6 +12,6 @@ namespace HelloDarlingMVC3.Models
         public Guid ProfileModelId { get; set; }
         public ProfileModel ProfileModel { get; set; }
 
-        public int Age { get; set; }
+        public string Age { get; set; }
     }
 }
