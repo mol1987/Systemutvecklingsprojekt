@@ -1,6 +1,9 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
 a.navbar-brand {
   white-space: normal;
   text-align: center;
@@ -30,6 +33,11 @@ html {
   font-size: 14px;
 }
 @media (min-width: 768px) {
+
+  main{
+   
+    height: 70vh;
+  }
   html {
     font-size: 16px;
   }
@@ -58,9 +66,12 @@ html {
   min-height: 100%;
 }
 
+
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  background-color:#F6ECEF ;
+  
 }
 .footer {
   bottom: 0;
@@ -68,4 +79,137 @@ body {
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+}
+nav{
+  background-color:#2e3232 ;
+  height: 100px;
+  text-align: center;
+  
+}
+.container{
+  height: 100px;
+  text-align: center;
+  vertical-align: middle;
+  margin: auto;
+}
+
+.HelloDarling{
+  height: 100%;
+  font-size: 4rem;
+  color: #F6ECEF;
+  font-family: 'Lobster', cursive;
+
+
+}
+.HelloDarling:hover{
+
+  text-decoration: none;
+  color: #F6ECEF;
+
+}
+
+.Loginbox{
+  margin-top: auto;
+  margin-bottom: auto;
+  
+}
+.Loginbtn{
+  margin-top: 30px;
+  font-size: 1.5rem;
+  position: absolute;
+  right: 0;
+  color: #F6ECEF;
+  right: 20px;
+  transition: 1s;
+}
+.Loginbtn:hover{
+  text-decoration: none;
+  color: #f6ecef6e;
+
+  }
+
+  .Regristerbtn{
+    margin-top: 30px;
+    font-size: 1.5rem;
+    position: absolute;
+    right: 0;
+    color: #F6ECEF;
+    right: 90px;
+    border-right: 1px solid gray ;
+    padding-right: 10px ;
+    transition: 1s;
+  }
+  .Regristerbtn:hover{
+    text-decoration: none;
+    color: #f6ecef6e;
+    }
+    #mySidenav a {
+      position: absolute;
+      left: -160px;
+      transition: 1s;
+      padding: 15px;
+      width: 230px;
+      text-decoration: none;
+      font-size: 20px;
+      border-radius: 0 10px 10px 0;
+      color: transparent;
+      border: 0.5px solid #2E3232;
+  }
+
+    #mySidenav a:hover {
+      left: 0;
+      color: #2E3232;
+  }
+
+#Home {
+  top: 130px;
+  background-color: #98CDBC;
+  color: #F6ECEF;
+}
+
+#Profile {
+  top: 205px;
+  background-color: #98CDBC;
+  color: #F6ECEF;
+}
+
+#Candidate {
+  top: 280px;
+  background-color: #98CDBC;
+  color: #F6ECEF;
+}
+
+#Relationship {
+  top: 355px;
+  background-color: #98CDBC;
+  color: #F6ECEF;
+}
+
+a img {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 20px;
+}
+
+.Btn-Skapa{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 20px 20px 20px 20px;
+  background-color: #98CDBC;
+  padding: 50px;
+  font-size: 4rem;
+  text-decoration: none;
+  transition: 1s;
+  color: #2E3232;
+  margin-top: 20%;
+  font-weight: bolder;
+}
+main a:hover{
+  text-decoration: none;
+  background-color: #98cdbcb2;
+  color: #2E3232;
 }
