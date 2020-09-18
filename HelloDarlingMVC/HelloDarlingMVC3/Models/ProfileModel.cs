@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
 
 namespace HelloDarlingMVC3.Models
 {
@@ -12,11 +13,9 @@ namespace HelloDarlingMVC3.Models
     {
         [Key]
         public Guid Id { get; set; }
-        //public IdentityUser IdentityUser { get; set; }
-
 
         [Required]
-        [Column(TypeName = "varchar(12)")]
+        [Column(TypeName = "varchar(12)")] 
         public string IdentityNO { get; set; }
 
         [Required]
@@ -26,6 +25,13 @@ namespace HelloDarlingMVC3.Models
         [Required]
         [Column(TypeName = "varchar(32)")]
         public string LastName { get; set; }
+
+
+        [Column(TypeName = "varchar(100)")] public string FileName { get; set; }
+
+        [Column(TypeName = "varchar(100)")] public string ImageName { get; set; }
+        [NotMapped] public IFormFile ImageFile { get; set; }
+
 
         [Required]
         public int UsersCategory { get; set; }

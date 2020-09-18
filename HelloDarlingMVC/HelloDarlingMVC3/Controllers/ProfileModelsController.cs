@@ -25,14 +25,39 @@ namespace HelloDarlingMVC3.Controllers
         // GET: ProfileModels
         public async Task<IActionResult> Index()
         {
-            var userID=User.Claims.FirstOrDefault(x => x.Type==ClaimTypes.NameIdentifier);
+            var userID= User.Claims.FirstOrDefault(x => x.Type==ClaimTypes.NameIdentifier);
             var profile = _context.ProfileModel.FirstOrDefault(x => x.Id.Equals(userID));
+
+            //var username = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name);
+            //var profileUsername = _context.ProfileModel.FirstOrDefault(x => x.Username.Equals(username));
+
 
             if (profile ==null)
             {
                 profile = new ProfileModel();
             }
-            
+
+            profile.UserAppearance = _context.Appearance.FirstOrDefault(x => x.ProfileModelId.Equals(userID));
+
+            if (profile.UserAppearance == null)
+            {
+                profile.UserAppearance = new Appearance();
+            }
+
+            profile.UserInterests = _context.Interests.FirstOrDefault(x => x.ProfileModelId.Equals(userID));
+
+            if (profile.UserInterests == null)
+            {
+                profile.UserInterests = new Interests();
+            }
+
+            profile.UserPreference = _context.Preference.FirstOrDefault(x => x.ProfileModelId.Equals(userID));
+
+            if (profile.UserPreference == null)
+            {
+                profile.UserPreference = new Preference();
+            }
+
             return View(profile);
         }
 
