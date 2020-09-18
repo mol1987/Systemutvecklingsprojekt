@@ -25,6 +25,14 @@ a {
     border-color: #98CDBC;
 }
 
+/* Profile manager styles
+-------------------------------------------------- */
+.btn-save {
+    background-color: #1b6ec2;
+    color: white;
+    float: right;
+}
+
 
 /* Sticky footer styles
 -------------------------------------------------- */
