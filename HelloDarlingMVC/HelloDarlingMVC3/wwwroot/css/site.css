@@ -1,6 +1,9 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
 a.navbar-brand {
   white-space: normal;
   text-align: center;
@@ -46,6 +49,11 @@ html {
 }
 
 @media (min-width: 768px) {
+
+  main{
+   
+    height: 70vh;
+  }
   html {
     font-size: 16px;
   }
@@ -74,9 +82,12 @@ html {
   min-height: 100%;
 }
 
+
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  background-color:#F6ECEF ;
+  
 }
 .footer {
   bottom: 0;

@@ -2,7 +2,7 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
-<ul class="navbar-nav">
+
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="nav-item"> 
@@ -12,7 +12,14 @@
         <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
             <button  type="submit" class="nav-link btn btn-link text-light">Logout</button>
         </form>
-    </li>
+       
+    <div id="mySidenav" class="sidenav">
+        <a asp-area="" asp-controller="Home" asp-action="Index" id="Home">Hem<img src="~/Images/home.png" /></a>
+        <a asp-area="" asp-controller="ProfileModel" asp-action="Index" id="Profile">Profil <img src="~/Images/profile.png" /></a>
+        <a href="#" id="Candidate">Sök Match <img src="~/Images/candidate.png" /></a>
+        <a asp-area="" asp-controller="" asp-action="" id="Relationship">Matchningar <img src="~/Images/relationship.png" /></a>
+    </div>
+
 }
 else
 {
@@ -23,4 +30,4 @@ else
         <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login">Login</a>
     </li>
 }
-</ul>
+
