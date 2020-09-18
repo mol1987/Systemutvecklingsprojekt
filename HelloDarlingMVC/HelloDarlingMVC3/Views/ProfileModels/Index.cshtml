@@ -7,7 +7,7 @@
 
 <h1>Profile</h1>
 
-<div asp-controller="ProfileModels" asp-action="Create" method="post">
+<form asp-controller="ProfileModels" asp-action="Edit" method="post">
 
     <div class="container">
         <div class="row">
@@ -21,7 +21,6 @@
             </div>
 
             <div class="col">
-                <form>
                     <div class="form-group">
                         <label for="formGroupExampleInput">Användarnamn</label>
                         <input asp-for=@User.Identity.Name class="form-control" type="text" id="formGroupExampleInput" placeholder="">
@@ -42,7 +41,6 @@
                         <input asp-for=@Model.IdentityNO class="form-control" type="text" id="formGroupExampleInput" placeholder="">
                         <span asp-validation-for="@Model.IdentityNO class=" text-danger"></span>
                     </div>
-                </form>
             </div>
 
             <div class="container">
@@ -108,13 +106,11 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <form>
                     <div class="form-group">
                         <label for="formGroupExampleInput">Längde</label>
                         <input asp-for=@Model.UserAppearance.Height class="form-control" type="text" id="formGroupExampleInput" placeholder="">
                         <span asp-validation-for="@Model.UserAppearance.Height class=" text-danger"></span>
                     </div>
-                </form>
 
             </div>
 
@@ -278,7 +274,8 @@
 
 
     </div>
-</div>
+    <input type="submit" value="Spara" class="btn btn-dark" />
+</form>
 
 
 <div class="container">
@@ -288,7 +285,7 @@
 </div>
 
 
-        @section Scripts {
-            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-        }
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
 

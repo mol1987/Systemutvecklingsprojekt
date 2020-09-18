@@ -18,7 +18,7 @@ namespace HelloDarlingMVC3.Models
 
         public DateTime MatchDate { get; set; }
 
-        public int Favorite { get; set; }
-        public int Status { get; set; }
+        public int? Favorite { get; set; }
+        public int? Status { get; set; }
     }
 }

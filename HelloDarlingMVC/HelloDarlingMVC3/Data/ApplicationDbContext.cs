@@ -28,10 +28,11 @@ namespace HelloDarlingMVC3.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<ProfileModel>().HasOne(e => e.UserPreference).WithOne(e => e.ProfileModel).HasForeignKey<ProfileModel>(f => f.Id);
-            modelBuilder.Entity<ProfileModel>().HasOne(e => e.UserAppearance).WithOne(e => e.ProfileModel).HasForeignKey<ProfileModel>(f => f.Id);
-            modelBuilder.Entity<ProfileModel>().HasOne(e => e.UserInterests).WithOne(e => e.ProfileModel).HasForeignKey<ProfileModel>(f => f.Id);
-            //modelBuilder.Entity<ProfileModel>().HasOne(e => e.IdentityUser).WithOne().HasForeignKey<IdentityUser>(f => f.Id).OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Appearance>().HasOne(e => e.ProfileModel).WithOne(e => e.UserAppearance).HasForeignKey<Appearance>(f => f.ProfileModelId);
+            modelBuilder.Entity<Preference>().HasOne(e => e.ProfileModel).WithOne(e => e.UserPreference).HasForeignKey<Preference>(f => f.ProfileModelId);
+            modelBuilder.Entity<Interests>().HasOne(e => e.ProfileModel).WithOne(e => e.UserInterests).HasForeignKey<Interests>(f => f.ProfileModelId);
+
             modelBuilder.Entity<ConversationsMessages>().HasKey(x => new { x.ConversationsId, x.MessageID });
             
             modelBuilder.Entity<ConversationsMessages>()

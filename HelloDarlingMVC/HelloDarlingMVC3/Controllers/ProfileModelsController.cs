@@ -25,9 +25,8 @@ namespace HelloDarlingMVC3.Controllers
         // GET: ProfileModels
         public async Task<IActionResult> Index()
         {
-            var userID= User.Claims.FirstOrDefault(x => x.Type==ClaimTypes.NameIdentifier);
+            var userID= Guid.Parse(User.Claims.FirstOrDefault(x => x.Type==ClaimTypes.NameIdentifier).Value);
             var profile = _context.ProfileModel.FirstOrDefault(x => x.Id.Equals(userID));
-
             //var username = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name);
             //var profileUsername = _context.ProfileModel.FirstOrDefault(x => x.Username.Equals(username));
 
@@ -35,13 +34,19 @@ namespace HelloDarlingMVC3.Controllers
             if (profile ==null)
             {
                 profile = new ProfileModel();
+                profile.Id = userID;
+                _context.Add(profile);
+                await _context.SaveChangesAsync();
             }
-
+            
             profile.UserAppearance = _context.Appearance.FirstOrDefault(x => x.ProfileModelId.Equals(userID));
 
             if (profile.UserAppearance == null)
             {
                 profile.UserAppearance = new Appearance();
+                profile.UserAppearance.ProfileModelId = profile.Id;
+                _context.Add(profile.UserAppearance);
+                await _context.SaveChangesAsync();
             }
 
             profile.UserInterests = _context.Interests.FirstOrDefault(x => x.ProfileModelId.Equals(userID));
@@ -49,6 +54,9 @@ namespace HelloDarlingMVC3.Controllers
             if (profile.UserInterests == null)
             {
                 profile.UserInterests = new Interests();
+                profile.UserInterests.ProfileModelId = profile.Id;
+                _context.Add(profile.UserInterests);
+                await _context.SaveChangesAsync();
             }
 
             profile.UserPreference = _context.Preference.FirstOrDefault(x => x.ProfileModelId.Equals(userID));
@@ -56,6 +64,9 @@ namespace HelloDarlingMVC3.Controllers
             if (profile.UserPreference == null)
             {
                 profile.UserPreference = new Preference();
+                profile.UserPreference.ProfileModelId = profile.Id;
+                _context.Add(profile.UserPreference);
+                await _context.SaveChangesAsync();
             }
 
             return View(profile);
@@ -90,7 +101,7 @@ namespace HelloDarlingMVC3.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id")] ProfileModel profileModel)
+        public async Task<IActionResult> Create(ProfileModel profileModel)
         {
             if (ModelState.IsValid)
             {
@@ -122,13 +133,8 @@ namespace HelloDarlingMVC3.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id")] ProfileModel profileModel)
+        public async Task<IActionResult> Edit(ProfileModel profileModel)
         {
-            if (id != profileModel.Id)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
                 try
@@ -147,7 +153,7 @@ namespace HelloDarlingMVC3.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return View(profileModel);
             }
             return View(profileModel);
         }
