@@ -68,12 +68,17 @@
     </div>
 </div>
 
-
+<div class="col">
+    <p>
+        <div class="form-group">
+            <span class="badge badge-pill badge-info">BIO</span>
+        </div>
+    </p>
+</div>
 
 <div class="col">
     <p>
         <div class="form-group">
-            <label for="exampleFormControlTextarea1">BIO</label>
             <textarea asp-for=@Model.Bio class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             <span asp-validation-for="@Model.Bio class=" text-danger"></span>
         </div>
@@ -81,7 +86,15 @@
     </p>
 </div>
 
-<label>Utseende</label>
+<div class="col">
+    <p>
+        <div class="form-group">
+            <span class="badge badge-pill badge-info">Utseende</span>
+        </div>
+    </p>
+</div>
+
+
 
 <div class="container">
     <div class="row">
@@ -94,6 +107,9 @@
                 </div>
             </form>
 
+        </div>
+
+        <div class="col">
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Hårfärg</label>
                 <select asp-for=@Model.UserAppearance.HairColor class="form-control" id="exampleFormControlSelect1">
@@ -105,6 +121,10 @@
                 </select>
             </div>
 
+        </div>
+
+        <div class="col">
+
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Ögönfärg</label>
                 <select asp-for=@Model.UserAppearance.EyeColor class="form-control" id="exampleFormControlSelect1">
@@ -115,12 +135,19 @@
                     <option>Blandat</option>
                 </select>
             </div>
+
+
         </div>
     </div>
 </div>
 
-
-<label>Mina intresser</label>
+<div class="col">
+    <p>
+        <div class="form-group">
+            <span class="badge badge-pill badge-info">Mina intresser</span>
+        </div>
+    </p>
+</div>
 
 <div class="container">
     <div class="row">
@@ -136,6 +163,10 @@
                 </select>
             </div>
 
+        </div>
+
+        <div class="col">
+
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Film</label>
                 <select asp-for=@Model.UserInterests.Movies class="form-control" id="exampleFormControlSelect1">
@@ -145,6 +176,10 @@
                     <option>Äventyr</option>
                 </select>
             </div>
+
+        </div>
+
+        <div class="col">
 
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Musik</label>
@@ -156,6 +191,17 @@
                 </select>
             </div>
 
+        </div>
+
+    </div>
+
+</div>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col">
+
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Bilar</label>
                 <select asp-for=@Model.UserInterests.Cars class="form-control" id="exampleFormControlSelect1">
@@ -164,6 +210,10 @@
                     <option>Saab</option>
                 </select>
             </div>
+
+        </div>
+
+        <div class="col">
 
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Tv-spel</label>
@@ -175,60 +225,69 @@
             </div>
         </div>
     </div>
+
 </div>
 
 
-<label>Vad jag söker</label>
-
-<div class="container">
-    <div class="row">
-        <div class="col">
-
+    <div class="col">
+        <p>
             <div class="form-group">
-                <label for="exampleFormControlSelect1">Åld (måste fixa till att ha range)</label>
-                <select asp-for=@Model.UserInterests.Books class="form-control" id="exampleFormControlSelect1">
-                    <option>Välj åld</option>
-                    <option>18-25</option>
-                    <option>25-30</option>
-                    <option>30-35</option>
-                    <option>35-40</option>
-                    <option>40-45</option>
-                </select>
+                <span class="badge badge-pill badge-info">Vad jag söker</span>
             </div>
-
-            <div class="form-group">
-                <label for="exampleFormControlSelect1">Kön</label>
-                <select asp-for=@Model.UserInterests.Movies class="form-control" id="exampleFormControlSelect1">
-                    <option>Välj kön</option>
-                    <option>Kvinnor</option>
-                    <option>Män</option>
-                    <option>Annat</option>
-                </select>
-            </div>
-
-
-        </div>
+        </p>
     </div>
-</div>
 
-<p>
-    <a asp-action="Edit">Edit</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @*@foreach (var item in Model) {
-                    <tr>
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                        </td>
-                    </tr>
-            }*@
-    </tbody>
-</table>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Åld (måste fixa till att ha range)</label>
+                    <select asp-for=@Model.UserInterests.Books class="form-control" id="exampleFormControlSelect1">
+                        <option>Välj åld</option>
+                        <option>18-25</option>
+                        <option>25-30</option>
+                        <option>30-35</option>
+                        <option>35-40</option>
+                        <option>40-45</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col">
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Kön</label>
+                    <select asp-for=@Model.UserInterests.Movies class="form-control" id="exampleFormControlSelect1">
+                        <option>Välj kön</option>
+                        <option>Kvinnor</option>
+                        <option>Män</option>
+                        <option>Annat</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+           
+     </div>
+
+    <p>
+        <a asp-action="Edit">Edit</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @*@foreach (var item in Model) {
+                        <tr>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                        </tr>
+                }*@
+        </tbody>
+    </table>
