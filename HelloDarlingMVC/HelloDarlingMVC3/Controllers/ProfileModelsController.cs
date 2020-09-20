@@ -143,15 +143,16 @@ namespace HelloDarlingMVC3.Controllers
             profileModel.UserAppearance.ProfileModelId = profileModel.Id;
             profileModel.UserInterests.ProfileModelId = profileModel.Id;
             //profileModel.UserPreference.ProfileModelId = profileModel.Id;
+
             if (ModelState.IsValid)
             { 
-                if (profileModel.ImageFile == null)
+                if (profileModel.ImageFile != null)
                 {
                     string wwwRootPath = _hostEnvironment.WebRootPath;
                     string fileName = Path.GetFileNameWithoutExtension(profileModel.ImageFile.FileName);
                     string extension = Path.GetExtension(profileModel.ImageFile.FileName);
                     profileModel.ImageName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-                    string path = Path.Combine(wwwRootPath + "/Image", fileName);
+                    string path = Path.Combine(wwwRootPath + "/Image", profileModel.ImageName);
                     using (var fileStream = new FileStream(path, FileMode.Create))
                     {
                         await profileModel.ImageFile.CopyToAsync(fileStream);
