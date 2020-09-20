@@ -5,25 +5,25 @@ a.navbar-brand {
     white-space: normal;
     text-align: center;
     word-break: break-all;
-    color: #F6ECEF;
+    color: #3DA8BD;
 }
 
 /* Provide sufficient contrast against white background */
 a {
-    color: #98CDBC;
+    color: #3DA8BD;
 }
 
 .btn-primary {
     color: #fff;
-    background-color: #98CDBC;
-    border-color: #98CDBC;
+    background-color: #3DA8BD;
+    border-color: #3DA8BD;
     position: absolute;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
     color: #fff;
-    background-color: #98CDBC;
-    border-color: #98CDBC;
+    background-color: #3DA8BD;
+    border-color: #3DA8BD;
 }
 
 
@@ -101,3 +101,51 @@ body {
     }
 
 
+#mySidenav a {
+    position: absolute;
+    left: -160px;
+    transition: 1s;
+    padding: 15px;
+    width: 230px;
+    text-decoration: none;
+    font-size: 20px;
+    border-radius: 0 10px 10px 0;
+    color: transparent;
+    border: 0.5px solid #2E3232;
+}
+
+    #mySidenav a:hover {
+        left: 0;
+        color: #2E3232;
+    }
+
+#Home {
+    top: 130px;
+    background-color: #3DA8BD;
+    color: #F6ECEF;
+}
+
+#Profile {
+    top: 205px;
+    background-color: #3DA8BD;
+    color: #F6ECEF;
+}
+
+#Candidate {
+    top: 280px;
+    background-color: #3DA8BD;
+    color: #F6ECEF;
+}
+
+#Relationship {
+    top: 355px;
+    background-color: #3DA8BD;
+    color: #F6ECEF;
+}
+
+a img {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 20px;
+}
