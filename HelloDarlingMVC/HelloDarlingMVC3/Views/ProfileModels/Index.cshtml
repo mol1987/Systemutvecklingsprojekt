@@ -7,8 +7,7 @@
 
 <h1>Profile</h1>
 
-<form asp-controller="ProfileModels" asp-action="Edit" method="post">
-    
+<form asp-controller="ProfileModels" asp-action="Edit" method="post">    
     <div class="container">
         <div class="row">
             <div class="col">
@@ -40,6 +39,7 @@
                     <label for="formGroupExampleInput">Personnummer (12 siffror)</label>
                     <input asp-for=@Model.IdentityNO class="form-control" type="text" id="formGroupExampleInput" placeholder="">
                     <span asp-validation-for="@Model.IdentityNO class=" text-danger"></span>
+
                 </div>
             </div>
 
