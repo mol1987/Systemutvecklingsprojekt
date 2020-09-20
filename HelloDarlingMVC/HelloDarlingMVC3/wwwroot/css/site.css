@@ -95,4 +95,9 @@ body {
     vertical-align: middle;
 }
 
+    .HelloDarlingLogo:hover {
+        text-decoration: none;
+        color: #F6ECEF;
+    }
+
 
