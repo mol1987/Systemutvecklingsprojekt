@@ -135,6 +135,10 @@ namespace HelloDarlingMVC3.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(ProfileModel profileModel)
         {
+            profileModel.Id = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value);
+            profileModel.UserAppearance.ProfileModelId = profileModel.Id;
+            profileModel.UserInterests.ProfileModelId = profileModel.Id;
+            //profileModel.UserPreference.ProfileModelId = profileModel.Id;
             if (ModelState.IsValid)
             {
                 try
@@ -153,7 +157,7 @@ namespace HelloDarlingMVC3.Controllers
                         throw;
                     }
                 }
-                return View(profileModel);
+                return View("Index", profileModel);
             }
             return View(profileModel);
         }

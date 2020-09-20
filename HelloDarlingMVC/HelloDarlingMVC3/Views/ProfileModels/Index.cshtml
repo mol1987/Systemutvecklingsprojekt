@@ -8,7 +8,7 @@
 <h1>Profile</h1>
 
 <form asp-controller="ProfileModels" asp-action="Edit" method="post">
-
+    
     <div class="container">
         <div class="row">
             <div class="col">
@@ -21,26 +21,26 @@
             </div>
 
             <div class="col">
-                    <div class="form-group">
-                        <label for="formGroupExampleInput">Användarnamn</label>
-                        <input asp-for=@User.Identity.Name class="form-control" type="text" id="formGroupExampleInput" placeholder="">
-                        <span asp-validation-for="@User.Identity.Name class=" text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="formGroupExampleInput">Förnamn</label>
-                        <input asp-for=@Model.FirstName class="form-control" type="text" id="formGroupExampleInput" placeholder="">
-                        <span asp-validation-for="@Model.FirstName class=" text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="formGroupExampleInput">Efternamn</label>
-                        <input asp-for=@Model.LastName class="form-control" type="text" id="formGroupExampleInput" placeholder="">
-                        <span asp-validation-for="@Model.LastName class=" text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="formGroupExampleInput">Personnummer (12 siffror)</label>
-                        <input asp-for=@Model.IdentityNO class="form-control" type="text" id="formGroupExampleInput" placeholder="">
-                        <span asp-validation-for="@Model.IdentityNO class=" text-danger"></span>
-                    </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Användarnamn</label>
+                    <input asp-for=@User.Identity.Name class="form-control" type="text" id="formGroupExampleInput" placeholder="">
+                    <span asp-validation-for="@User.Identity.Name class=" text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Förnamn</label>
+                    <input asp-for=@Model.FirstName class="form-control" type="text" id="formGroupExampleInput" placeholder="">
+                    <span asp-validation-for="@Model.FirstName class=" text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Efternamn</label>
+                    <input asp-for=@Model.LastName class="form-control" type="text" id="formGroupExampleInput" placeholder="">
+                    <span asp-validation-for="@Model.LastName class=" text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Personnummer (12 siffror)</label>
+                    <input asp-for=@Model.IdentityNO class="form-control" type="text" id="formGroupExampleInput" placeholder="">
+                    <span asp-validation-for="@Model.IdentityNO class=" text-danger"></span>
+                </div>
             </div>
 
             <div class="container">
@@ -106,11 +106,11 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                    <div class="form-group">
-                        <label for="formGroupExampleInput">Längde</label>
-                        <input asp-for=@Model.UserAppearance.Height class="form-control" type="text" id="formGroupExampleInput" placeholder="">
-                        <span asp-validation-for="@Model.UserAppearance.Height class=" text-danger"></span>
-                    </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Längde</label>
+                    <input asp-for=@Model.UserAppearance.Height class="form-control" type="text" id="formGroupExampleInput" placeholder="">
+                    <span asp-validation-for="@Model.UserAppearance.Height class=" text-danger"></span>
+                </div>
 
             </div>
 
