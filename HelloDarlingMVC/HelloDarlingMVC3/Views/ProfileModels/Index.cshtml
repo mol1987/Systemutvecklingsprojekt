@@ -49,6 +49,7 @@
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Plats</label>
                             <select asp-for=@Model.Place class="form-control" id="exampleFormControlSelect1">
+                                <option> Välj</option>
                                 <option> Stockholm</option>
                                 <option>Uppsala</option>
                                 <option>Malmö</option>
@@ -60,6 +61,7 @@
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Kön</label>
                             <select asp-for=@Model.Gender class="form-control" id="exampleFormControlSelect1">
+                                <option> Välj</option>
                                 <option>Kvinna</option>
                                 <option>Man</option>
                                 <option>Annat</option>
@@ -274,15 +276,13 @@
 
 
     </div>
-    <input type="submit" value="Spara" class="btn btn-dark" />
+    <div class="container">
+        <div class="row justify-content-end">
+            <input type="submit" value="Spara" class="btn btn-dark" />
+        </div>
+    </div>
 </form>
 
-
-<div class="container">
-    <div class="row justify-content-end">
-        <input type="submit" value="Spara" class="btn btn-dark" />
-    </div>
-</div>
 
 
 @section Scripts {
