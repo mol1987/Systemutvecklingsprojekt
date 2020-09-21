@@ -9,6 +9,8 @@ using HelloDarlingMVC3.Data;
 using HelloDarlingMVC3.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace HelloDarlingMVC3.Controllers
 {
@@ -16,10 +18,12 @@ namespace HelloDarlingMVC3.Controllers
     public class ProfileModelsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public ProfileModelsController(ApplicationDbContext context)
+        public ProfileModelsController(ApplicationDbContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
+            _hostEnvironment = hostEnvironment;
         }
 
         // GET: ProfileModels
@@ -139,8 +143,21 @@ namespace HelloDarlingMVC3.Controllers
             profileModel.UserAppearance.ProfileModelId = profileModel.Id;
             profileModel.UserInterests.ProfileModelId = profileModel.Id;
             //profileModel.UserPreference.ProfileModelId = profileModel.Id;
+
             if (ModelState.IsValid)
-            {
+            { 
+                if (profileModel.ImageFile != null)
+                {
+                    string wwwRootPath = _hostEnvironment.WebRootPath;
+                    string fileName = Path.GetFileNameWithoutExtension(profileModel.ImageFile.FileName);
+                    string extension = Path.GetExtension(profileModel.ImageFile.FileName);
+                    profileModel.ImageName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                    string path = Path.Combine(wwwRootPath + "/Image", profileModel.ImageName);
+                    using (var fileStream = new FileStream(path, FileMode.Create))
+                    {
+                        await profileModel.ImageFile.CopyToAsync(fileStream);
+                    }
+                }
                 try
                 {
                     _context.Update(profileModel);
