@@ -139,10 +139,14 @@ namespace HelloDarlingMVC3.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(ProfileModel profileModel)
         {
+            
             profileModel.Id = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value);
+            //var extraProfile = (await _context.ProfileModel.FirstOrDefaultAsync(m => m.Id.Equals(profileModel.Id)));
             profileModel.UserAppearance.ProfileModelId = profileModel.Id;
             profileModel.UserInterests.ProfileModelId = profileModel.Id;
+            
             //profileModel.UserPreference.ProfileModelId = profileModel.Id;
+
 
             if (ModelState.IsValid)
             { 
@@ -157,8 +161,9 @@ namespace HelloDarlingMVC3.Controllers
                     {
                         await profileModel.ImageFile.CopyToAsync(fileStream);
                     }
-                    profileModel.ImageFile = null;
+                    //profileModel.ImageFile = null;
                 }
+                //profileModel.ImageName = extraProfile.ImageName;
                 try
                 {
                     _context.Update(profileModel);
@@ -175,7 +180,10 @@ namespace HelloDarlingMVC3.Controllers
                         throw;
                     }
                 }
-                return View("Index", profileModel);
+                //return View("Index");
+
+                return RedirectToAction("Index");
+
             }
             return View(profileModel);
         }

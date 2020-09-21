@@ -17,6 +17,10 @@
                     <input asp-for="@Model.ImageFile" accept="image/*" />
                     <span asp-validation-for="@Model.ImageFile" class=" text-danger"></span>
                 </div>
+                <div class="form-group">
+                    <input asp-for=@Model.ImageName class="form-control" type="text" id="formGroupExampleInput" placeholder="">
+                    <span asp-validation-for="@Model.ImageName class=" text-danger"></span>
+                </div>
                 <img src="@("~/image/" + Model.ImageName)" asp-append-version="true" height="255" width="255" />
             </div>
 
@@ -26,6 +30,7 @@
                     <input asp-for=@User.Identity.Name class="form-control" type="text" id="formGroupExampleInput" placeholder="">
                     <span asp-validation-for="@User.Identity.Name class=" text-danger"></span>
                 </div>
+                
                 <div class="form-group">
                     <label for="formGroupExampleInput">Förnamn</label>
                     <input asp-for=@Model.FirstName class="form-control" type="text" id="formGroupExampleInput" placeholder="">
