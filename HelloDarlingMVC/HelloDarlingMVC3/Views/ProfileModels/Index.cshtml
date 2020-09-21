@@ -17,7 +17,7 @@
                     <input asp-for="@Model.ImageFile" accept="image/*" />
                     <span asp-validation-for="@Model.ImageFile" class=" text-danger"></span>
                 </div>
-                <img src="@("~/image/" + Model.ImageName)" asp-append-version="true" height="255" width="255" />
+                <img class="rounded float-left" src="@("~/image/" + Model.ImageName)" asp-append-version="true" height="255" width="255" />
             </div>
 
             <div class="col">
