@@ -117,6 +117,7 @@ body {
     #mySidenav a:hover {
         left: 0;
         color: #2E3232;
+        text-align:center;
     }
 
 #Home {
@@ -148,4 +149,8 @@ a img {
     height: 30px;
     position: absolute;
     right: 20px;
+}
+
+.txtHd{
+    font-family: 'Lobster', cursive;
 }
