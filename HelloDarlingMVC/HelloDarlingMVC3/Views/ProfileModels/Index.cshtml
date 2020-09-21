@@ -7,12 +7,20 @@
 
 <h1>Profile</h1>
 
-<div class="container">
-    <div class="row">
-        <div class="col">col</div>
+<form asp-controller="ProfileModels" asp-action="Edit" method="post" enctype="multipart/form-data">    
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="@Model.ImageFile" class="control-label"></label>
+                    <input asp-for="@Model.ImageFile" accept="image/*" />
+                    <span asp-validation-for="@Model.ImageFile" class=" text-danger"></span>
+                </div>
+                <img src="@("~/image/" + Model.ImageName)" asp-append-version="true" height="255" width="255" />
+            </div>
 
-        <div class="col">
-            <form>
+            <div class="col">
                 <div class="form-group">
                     <label for="formGroupExampleInput">Användarnamn</label>
                     <input asp-for=@User.Identity.Name class="form-control" type="text" id="formGroupExampleInput" placeholder="">
@@ -33,202 +41,250 @@
                     <input asp-for=@Model.IdentityNO class="form-control" type="text" id="formGroupExampleInput" placeholder="">
                     <span asp-validation-for="@Model.IdentityNO class=" text-danger"></span>
                 </div>
-            </form>
-        </div>
+            </div>
 
-        <div class="container">
-            <div class="row justify-content-end">
-                <div class="col-4">
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect1">Plats</label>
-                        <select asp-for=@Model.Place class="form-control" id="exampleFormControlSelect1">
-                            <option> Stockholm</option>
-                            <option>Uppsala</option>
-                            <option>Malmö</option>
-                            <option>Lund</option>
-                            <option>Göteborg</option>
-                        </select>
+            <div class="container">
+                <div class="row justify-content-end">
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Plats</label>
+                            <select asp-for=@Model.Place class="form-control" id="exampleFormControlSelect1">
+                                <option> Välj</option>
+                                <option> Stockholm</option>
+                                <option>Uppsala</option>
+                                <option>Malmö</option>
+                                <option>Lund</option>
+                                <option>Göteborg</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Kön</label>
+                            <select asp-for=@Model.Gender class="form-control" id="exampleFormControlSelect1">
+                                <option> Välj</option>
+                                <option>Kvinna</option>
+                                <option>Man</option>
+                                <option>Annat</option>
+                            </select>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect1">Kön</label>
-                        <select asp-for=@Model.Gender class="form-control" id="exampleFormControlSelect1">
-                            <option>Kvinna</option>
-                            <option>Man</option>
-                            <option>Annat</option>
-                        </select>
-                    </div>
                 </div>
+
 
             </div>
 
-
         </div>
-
     </div>
-</div>
+
+    <div class="col">
+        <p>
+            <div class="form-group">
+                <span class="badge badge-pill badge-info">BIO</span>
+            </div>
+        </p>
+    </div>
+
+    <div class="col">
+        <p>
+            <div class="form-group">
+                <textarea asp-for=@Model.Bio class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <span asp-validation-for="@Model.Bio class=" text-danger"></span>
+            </div>
+
+        </p>
+    </div>
+
+    <div class="col">
+        <p>
+            <div class="form-group">
+                <span class="badge badge-pill badge-info">Utseende</span>
+            </div>
+        </p>
+    </div>
 
 
 
-<div class="col">
-    <p>
-        <div class="form-group">
-            <label for="exampleFormControlTextarea1">BIO</label>
-            <textarea asp-for=@Model.Bio class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            <span asp-validation-for="@Model.Bio class=" text-danger"></span>
-        </div>
-
-    </p>
-</div>
-
-<label>Utseende</label>
-
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <form>
+    <div class="container">
+        <div class="row">
+            <div class="col">
                 <div class="form-group">
                     <label for="formGroupExampleInput">Längde</label>
                     <input asp-for=@Model.UserAppearance.Height class="form-control" type="text" id="formGroupExampleInput" placeholder="">
                     <span asp-validation-for="@Model.UserAppearance.Height class=" text-danger"></span>
                 </div>
-            </form>
-
-            <div class="form-group">
-                <label for="exampleFormControlSelect1">Hårfärg</label>
-                <select asp-for=@Model.UserAppearance.HairColor class="form-control" id="exampleFormControlSelect1">
-                    <option>Välj färg</option>
-                    <option>Blond</option>
-                    <option>Brunett</option>
-                    <option>Svart</option>
-                    <option>Skallig</option>
-                </select>
             </div>
 
-            <div class="form-group">
-                <label for="exampleFormControlSelect1">Ögönfärg</label>
-                <select asp-for=@Model.UserAppearance.EyeColor class="form-control" id="exampleFormControlSelect1">
-                    <option>Välj färg</option>
-                    <option>Blå</option>
-                    <option>Grön</option>
-                    <option>Brun</option>
-                    <option>Blandat</option>
-                </select>
-            </div>
-        </div>
-    </div>
-</div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Hårfärg</label>
+                    <select asp-for=@Model.UserAppearance.HairColor class="form-control" id="exampleFormControlSelect1">
+                        <option>Välj färg</option>
+                        <option>Blond</option>
+                        <option>Brunett</option>
+                        <option>Svart</option>
+                        <option>Skallig</option>
+                    </select>
+                </div>
 
-
-<label>Mina intresser</label>
-
-<div class="container">
-    <div class="row">
-        <div class="col">
-
-            <div class="form-group">
-                <label for="exampleFormControlSelect1">Litteratur</label>
-                <select asp-for=@Model.UserInterests.Books class="form-control" id="exampleFormControlSelect1">
-                    <option>Välj genre</option>
-                    <option>Fakta</option>
-                    <option>Skönliteratur</option>
-                    <option>Äventyr</option>
-                </select>
             </div>
 
-            <div class="form-group">
-                <label for="exampleFormControlSelect1">Film</label>
-                <select asp-for=@Model.UserInterests.Movies class="form-control" id="exampleFormControlSelect1">
-                    <option>Välj genre</option>
-                    <option>Fakta</option>
-                    <option>Skönlitteratur</option>
-                    <option>Äventyr</option>
-                </select>
-            </div>
+            <div class="col">
 
-            <div class="form-group">
-                <label for="exampleFormControlSelect1">Musik</label>
-                <select asp-for=@Model.UserInterests.Music class="form-control" id="exampleFormControlSelect1">
-                    <option>Välj genre</option>
-                    <option>Rock</option>
-                    <option>Indie</option>
-                    <option>Klassik</option>
-                </select>
-            </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Ögönfärg</label>
+                    <select asp-for=@Model.UserAppearance.EyeColor class="form-control" id="exampleFormControlSelect1">
+                        <option>Välj färg</option>
+                        <option>Blå</option>
+                        <option>Grön</option>
+                        <option>Brun</option>
+                        <option>Blandat</option>
+                    </select>
+                </div>
 
-            <div class="form-group">
-                <label for="exampleFormControlSelect1">Bilar</label>
-                <select asp-for=@Model.UserInterests.Cars class="form-control" id="exampleFormControlSelect1">
-                    <option>Välj</option>
-                    <option>Volvo</option>
-                    <option>Saab</option>
-                </select>
-            </div>
 
-            <div class="form-group">
-                <label for="exampleFormControlSelect1">Tv-spel</label>
-                <select asp-for=@Model.UserInterests.TVgame class="form-control" id="exampleFormControlSelect1">
-                    <option>Välj spel</option>
-                    <option>Super Mario</option>
-                    <option>CS</option>
-                </select>
             </div>
         </div>
     </div>
-</div>
 
-
-<label>Vad jag söker</label>
-
-<div class="container">
-    <div class="row">
-        <div class="col">
-
+    <div class="col">
+        <p>
             <div class="form-group">
-                <label for="exampleFormControlSelect1">Åld (måste fixa till att ha range)</label>
-                <select asp-for=@Model.UserInterests.Books class="form-control" id="exampleFormControlSelect1">
-                    <option>Välj åld</option>
-                    <option>18-25</option>
-                    <option>25-30</option>
-                    <option>30-35</option>
-                    <option>35-40</option>
-                    <option>40-45</option>
-                </select>
+                <span class="badge badge-pill badge-info">Mina intresser</span>
+            </div>
+        </p>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Litteratur</label>
+                    <select asp-for=@Model.UserInterests.Books class="form-control" id="exampleFormControlSelect1">
+                        <option>Välj genre</option>
+                        <option>Fakta</option>
+                        <option>Skönliteratur</option>
+                        <option>Äventyr</option>
+                    </select>
+                </div>
+
             </div>
 
-            <div class="form-group">
-                <label for="exampleFormControlSelect1">Kön</label>
-                <select asp-for=@Model.UserInterests.Movies class="form-control" id="exampleFormControlSelect1">
-                    <option>Välj kön</option>
-                    <option>Kvinnor</option>
-                    <option>Män</option>
-                    <option>Annat</option>
-                </select>
+            <div class="col">
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Film</label>
+                    <select asp-for=@Model.UserInterests.Movies class="form-control" id="exampleFormControlSelect1">
+                        <option>Välj genre</option>
+                        <option>Fakta</option>
+                        <option>Skönlitteratur</option>
+                        <option>Äventyr</option>
+                    </select>
+                </div>
+
             </div>
 
+            <div class="col">
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Musik</label>
+                    <select asp-for=@Model.UserInterests.Music class="form-control" id="exampleFormControlSelect1">
+                        <option>Välj genre</option>
+                        <option>Rock</option>
+                        <option>Indie</option>
+                        <option>Klassik</option>
+                    </select>
+                </div>
+
+            </div>
 
         </div>
-    </div>
-</div>
 
-<p>
-    <a asp-action="Edit">Edit</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @*@foreach (var item in Model) {
-                    <tr>
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                        </td>
-                    </tr>
-            }*@
-    </tbody>
-</table>
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col">
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Bilar</label>
+                    <select asp-for=@Model.UserInterests.Cars class="form-control" id="exampleFormControlSelect1">
+                        <option>Välj</option>
+                        <option>Volvo</option>
+                        <option>Saab</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="col">
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Tv-spel</label>
+                    <select asp-for=@Model.UserInterests.TVgame class="form-control" id="exampleFormControlSelect1">
+                        <option>Välj spel</option>
+                        <option>Super Mario</option>
+                        <option>CS</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="col">
+        <p>
+            <div class="form-group">
+                <span class="badge badge-pill badge-info">Vad jag söker</span>
+            </div>
+        </p>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Åld (måste fixa till att ha range)</label>
+                    <select asp-for=@Model.UserInterests.Books class="form-control" id="exampleFormControlSelect1">
+                        <option>Välj åld</option>
+                        <option>18-25</option>
+                        <option>25-30</option>
+                        <option>30-35</option>
+                        <option>35-40</option>
+                        <option>40-45</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col">
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Kön</label>
+                    <select asp-for=@Model.UserInterests.Movies class="form-control" id="exampleFormControlSelect1">
+                        <option>Välj kön</option>
+                        <option>Kvinnor</option>
+                        <option>Män</option>
+                        <option>Annat</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="container">
+        <div class="row justify-content-end">
+            <input type="submit" value="Spara" class="btn btn-dark" />
+        </div>
+    </div>
+</form>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

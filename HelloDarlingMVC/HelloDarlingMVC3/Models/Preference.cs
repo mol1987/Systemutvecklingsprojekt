@@ -15,6 +15,6 @@ namespace HelloDarlingMVC3.Models
 
         public string Age { get; set; }
 
-        public int PreferredGender { get; set; }
+        public int? PreferredGender { get; set; }
     }
 }

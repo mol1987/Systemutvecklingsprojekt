@@ -4,14 +4,16 @@ using HelloDarlingMVC3.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HelloDarlingMVC3.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200918121124_RemovedRequired")]
+    partial class RemovedRequired
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,6 +24,7 @@ namespace HelloDarlingMVC3.Data.Migrations
             modelBuilder.Entity("HelloDarlingMVC3.Models.Appearance", b =>
                 {
                     b.Property<Guid>("ProfileModelId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("EyeColor")
@@ -70,6 +73,7 @@ namespace HelloDarlingMVC3.Data.Migrations
             modelBuilder.Entity("HelloDarlingMVC3.Models.Interests", b =>
                 {
                     b.Property<Guid>("ProfileModelId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Books")
@@ -106,13 +110,13 @@ namespace HelloDarlingMVC3.Data.Migrations
                     b.Property<Guid>("Profile2Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("Favorite")
+                    b.Property<int>("Favorite")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("MatchDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("Status")
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.HasKey("Profile1Id", "Profile2Id");
@@ -155,12 +159,13 @@ namespace HelloDarlingMVC3.Data.Migrations
             modelBuilder.Entity("HelloDarlingMVC3.Models.Preference", b =>
                 {
                     b.Property<Guid>("ProfileModelId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Age")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PreferredGender")
+                    b.Property<int>("PreferredGender")
                         .HasColumnType("int");
 
                     b.HasKey("ProfileModelId");
@@ -171,7 +176,6 @@ namespace HelloDarlingMVC3.Data.Migrations
             modelBuilder.Entity("HelloDarlingMVC3.Models.ProfileModel", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Bio")
@@ -201,10 +205,10 @@ namespace HelloDarlingMVC3.Data.Migrations
                     b.Property<string>("Place")
                         .HasColumnType("varchar(64)");
 
-                    b.Property<int?>("Status")
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UsersCategory")
+                    b.Property<int>("UsersCategory")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -427,15 +431,6 @@ namespace HelloDarlingMVC3.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("HelloDarlingMVC3.Models.Appearance", b =>
-                {
-                    b.HasOne("HelloDarlingMVC3.Models.ProfileModel", "ProfileModel")
-                        .WithOne("UserAppearance")
-                        .HasForeignKey("HelloDarlingMVC3.Models.Appearance", "ProfileModelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("HelloDarlingMVC3.Models.ConversationsMessages", b =>
                 {
                     b.HasOne("HelloDarlingMVC3.Models.Conversations", "Conversations")
@@ -447,15 +442,6 @@ namespace HelloDarlingMVC3.Data.Migrations
                     b.HasOne("HelloDarlingMVC3.Models.Messages", "Messages")
                         .WithMany("ConversationsMessages")
                         .HasForeignKey("MessageID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("HelloDarlingMVC3.Models.Interests", b =>
-                {
-                    b.HasOne("HelloDarlingMVC3.Models.ProfileModel", "ProfileModel")
-                        .WithOne("UserInterests")
-                        .HasForeignKey("HelloDarlingMVC3.Models.Interests", "ProfileModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -486,11 +472,23 @@ namespace HelloDarlingMVC3.Data.Migrations
                         .HasForeignKey("ProfileModelId");
                 });
 
-            modelBuilder.Entity("HelloDarlingMVC3.Models.Preference", b =>
+            modelBuilder.Entity("HelloDarlingMVC3.Models.ProfileModel", b =>
                 {
-                    b.HasOne("HelloDarlingMVC3.Models.ProfileModel", "ProfileModel")
-                        .WithOne("UserPreference")
-                        .HasForeignKey("HelloDarlingMVC3.Models.Preference", "ProfileModelId")
+                    b.HasOne("HelloDarlingMVC3.Models.Appearance", "UserAppearance")
+                        .WithOne("ProfileModel")
+                        .HasForeignKey("HelloDarlingMVC3.Models.ProfileModel", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HelloDarlingMVC3.Models.Interests", "UserInterests")
+                        .WithOne("ProfileModel")
+                        .HasForeignKey("HelloDarlingMVC3.Models.ProfileModel", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HelloDarlingMVC3.Models.Preference", "UserPreference")
+                        .WithOne("ProfileModel")
+                        .HasForeignKey("HelloDarlingMVC3.Models.ProfileModel", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

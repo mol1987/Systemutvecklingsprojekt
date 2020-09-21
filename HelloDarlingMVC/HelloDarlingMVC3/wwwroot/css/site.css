@@ -1,31 +1,29 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
-
 a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+    color: #3DA8BD;
 }
 
 /* Provide sufficient contrast against white background */
 a {
-    color: #98CDBC;
+    color: #3DA8BD;
 }
 
 .btn-primary {
     color: #fff;
-    background-color: #98CDBC;
-    border-color: #98CDBC;
+    background-color: #3DA8BD;
+    border-color: #3DA8BD;
     position: absolute;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
     color: #fff;
-    background-color: #98CDBC;
-    border-color: #98CDBC;
+    background-color: #3DA8BD;
+    border-color: #3DA8BD;
 }
 
 
@@ -35,13 +33,6 @@ html {
   font-size: 14px;
 }
 
-.btn-ok {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-  position: absolute;
-  right: 20px;
-}
 
 .card{
   width: 80%;
@@ -49,11 +40,6 @@ html {
 }
 
 @media (min-width: 768px) {
-
-  main{
-   
-    height: 70vh;
-  }
   html {
     font-size: 16px;
   }
@@ -82,12 +68,10 @@ html {
   min-height: 100%;
 }
 
-
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-  background-color:#F6ECEF ;
-  
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-color: #F6ECEF;
 }
 .footer {
   bottom: 0;
@@ -97,4 +81,71 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
+.StartContainer {
 
+    text-align: center;
+    vertical-align: middle;
+}
+
+.HelloDarlingLogo {
+    color: #F6ECEF;
+    font-family: 'Lobster', cursive;
+    font-size: 2rem;
+    text-align: center;
+    vertical-align: middle;
+}
+
+    .HelloDarlingLogo:hover {
+        text-decoration: none;
+        color: #F6ECEF;
+    }
+
+
+#mySidenav a {
+    position: absolute;
+    left: -160px;
+    transition: 1s;
+    padding: 15px;
+    width: 230px;
+    text-decoration: none;
+    font-size: 20px;
+    border-radius: 0 10px 10px 0;
+    color: transparent;
+    border: 0.5px solid #2E3232;
+}
+
+    #mySidenav a:hover {
+        left: 0;
+        color: #2E3232;
+    }
+
+#Home {
+    top: 130px;
+    background-color: #3DA8BD;
+    color: #F6ECEF;
+}
+
+#Profile {
+    top: 205px;
+    background-color: #3DA8BD;
+    color: #F6ECEF;
+}
+
+#Candidate {
+    top: 280px;
+    background-color: #3DA8BD;
+    color: #F6ECEF;
+}
+
+#Relationship {
+    top: 355px;
+    background-color: #3DA8BD;
+    color: #F6ECEF;
+}
+
+a img {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 20px;
+}

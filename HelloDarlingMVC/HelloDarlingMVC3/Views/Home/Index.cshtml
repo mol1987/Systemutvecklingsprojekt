@@ -1,8 +1,34 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+
 }
 
-<div class="cntr-btn">
 
-<a class="Btn-Skapa" asp-area="Identity" asp-page="/Account/Register">Skapa konto</a>
-</div>
+
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+
+}
+else
+{
+
+
+
+    @*<div>
+
+            <a class="nav-link" href='/Identity/Account/Login'>
+                Logga in
+            </a>
+
+        </div>*@
+
+
+}
+
+
+
+
