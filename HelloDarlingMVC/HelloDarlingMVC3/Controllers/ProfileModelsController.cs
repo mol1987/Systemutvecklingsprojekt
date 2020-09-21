@@ -157,6 +157,7 @@ namespace HelloDarlingMVC3.Controllers
                     {
                         await profileModel.ImageFile.CopyToAsync(fileStream);
                     }
+                    profileModel.ImageFile = null;
                 }
                 try
                 {
