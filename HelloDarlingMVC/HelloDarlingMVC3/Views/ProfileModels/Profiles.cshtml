@@ -7,43 +7,34 @@
 
 <h1>Profile</h1>
 
-<form asp-controller="ProfileModels" asp-action="Edit" method="post" enctype="multipart/form-data">    
+<form asp-controller="ProfileModels" asp-action="Edit" method="post" enctype="multipart/form-data">
     <div class="container">
         <div class="row">
             <div class="col">
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="@Model.ImageFile" class="control-label"></label>
-                    <input asp-for="@Model.ImageFile" accept="image/*" />
-                    <span asp-validation-for="@Model.ImageFile" class=" text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input asp-for=@Model.ImageName class="form-control" type="text" id="formGroupExampleInput" placeholder="" disabled>
-                    <span asp-validation-for="@Model.ImageName class=" text-danger"></span>
-                </div>
+                
                 <img src="@("~/image/" + Model.ImageName)" asp-append-version="true" height="255" width="255" />
             </div>
 
             <div class="col">
                 <div class="form-group">
                     <label for="formGroupExampleInput">Användarnamn</label>
-                    <input asp-for=@User.Identity.Name class="form-control" type="text" id="formGroupExampleInput" placeholder="">
+                    <input asp-for=@User.Identity.Name class="form-control" type="text" id="formGroupExampleInput" placeholder="" disabled>
                     <span asp-validation-for="@User.Identity.Name class=" text-danger"></span>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="formGroupExampleInput">Förnamn</label>
-                    <input asp-for=@Model.FirstName class="form-control" type="text" id="formGroupExampleInput" placeholder="">
+                    <input asp-for=@Model.FirstName class="form-control" type="text" id="formGroupExampleInput" placeholder="" disabled>
                     <span asp-validation-for="@Model.FirstName class=" text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label for="formGroupExampleInput">Efternamn</label>
-                    <input asp-for=@Model.LastName class="form-control" type="text" id="formGroupExampleInput" placeholder="">
+                    <input asp-for=@Model.LastName class="form-control" type="text" id="formGroupExampleInput" placeholder="" disabled>
                     <span asp-validation-for="@Model.LastName class=" text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label for="formGroupExampleInput">Personnummer (12 siffror)</label>
-                    <input asp-for=@Model.IdentityNO class="form-control" type="text" id="formGroupExampleInput" placeholder="">
+                    <input asp-for=@Model.IdentityNO class="form-control" type="text" id="formGroupExampleInput" placeholder="" disabled>
                     <span asp-validation-for="@Model.IdentityNO class=" text-danger"></span>
                 </div>
             </div>
