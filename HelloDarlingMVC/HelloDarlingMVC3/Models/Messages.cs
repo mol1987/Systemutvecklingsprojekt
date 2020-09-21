@@ -19,7 +19,6 @@ namespace HelloDarlingMVC3.Models
 
         public DateTime MessageDate { get; set; }
 
-        [Required]
         public int MessageStatus { get; set; }
 
         public IList<ConversationsMessages> ConversationsMessages { get; set; }
