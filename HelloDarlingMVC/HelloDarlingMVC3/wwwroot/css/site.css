@@ -143,6 +143,12 @@ body {
     color: #F6ECEF;
 }
 
+#Settings {
+    top: 430px;
+    background-color: #3DA8BD;
+    color: #F6ECEF;
+}
+
 a img {
     width: 30px;
     height: 30px;
