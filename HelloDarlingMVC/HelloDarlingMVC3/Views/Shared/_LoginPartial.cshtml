@@ -18,12 +18,15 @@
             <a asp-area="" asp-controller="ProfileModels" asp-action="Index" id="Profile">
                 Profil<img src="/image/Profil.png" />
             </a>
-            <a id="Candidate">
+
+            <a asp-area="" asp-controller="FindMatch" asp-action="Index" id="Candidate">
                 Sök Match<img src="/image/Find match.png" />
             </a>
-            <a asp-area="" asp-controller="" asp-action="" id="Relationship">
+
+            <a asp-area="" asp-controller="Matches" asp-action="Index" id="Relationship">
                 Matchningar<img src="/image/Match.png" />
             </a>
+
             <a asp-area="Identity" asp-page="/Account/Manage/Index" id="Settings">
                 Inställningar<img src="/image/Settings.png" />
             </a>
