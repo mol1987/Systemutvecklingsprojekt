@@ -26,13 +26,54 @@ namespace HelloDarlingMVC3.Controllers
             _hostEnvironment = hostEnvironment;
         }
 
+
+        // POST: Send contact request
+        public async Task<IActionResult> ContactRequest(Guid Id)
+        {
+
+            var userID = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value);
+            var profile = _context.ProfileModel.FirstOrDefault(x => x.Id.Equals(userID));
+
+            var potentialCandidate = _context.ProfileModel.FirstOrDefault(x => x.Id.Equals(Id));
+
+            var potentialMatch = new Match();
+            //This is ID for profile that is signed in
+            potentialMatch.Profile1Id = profile.Id;
+            //This is ID for potential candidate                 
+            potentialMatch.Profile2Id = potentialCandidate.Id;
+            //time when request is been sent
+            potentialMatch.MatchDate = DateTime.Now;
+            //1=Sent request 2=match 3=ingnored
+            potentialMatch.Status = 1;
+
+            _context.Add(potentialMatch);
+            await _context.SaveChangesAsync();
+
+            return View(profile);
+        }
+
         // GET: ProfileModels
+        public async Task<IActionResult> Profiles(Guid Id)
+        {
+
+            var profile = _context.ProfileModel.FirstOrDefault(x => x.Id.Equals(Id));
+            //var username = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name);
+            //var profileUsername = _context.ProfileModel.FirstOrDefault(x => x.Username.Equals(username));
+
+            profile.UserAppearance = _context.Appearance.FirstOrDefault(x => x.ProfileModelId.Equals(Id));
+
+            profile.UserInterests = _context.Interests.FirstOrDefault(x => x.ProfileModelId.Equals(Id));
+
+            profile.UserPreference = _context.Preference.FirstOrDefault(x => x.ProfileModelId.Equals(Id));
+
+            return View(profile);
+        }
+
+            // GET: ProfileModels
         public async Task<IActionResult> Index()
         {
             var userID= Guid.Parse(User.Claims.FirstOrDefault(x => x.Type==ClaimTypes.NameIdentifier).Value);
             var profile = _context.ProfileModel.FirstOrDefault(x => x.Id.Equals(userID));
-            //var username = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name);
-            //var profileUsername = _context.ProfileModel.FirstOrDefault(x => x.Username.Equals(username));
 
 
             if (profile ==null)
@@ -139,10 +180,14 @@ namespace HelloDarlingMVC3.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(ProfileModel profileModel)
         {
+            
             profileModel.Id = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value);
+            //var extraProfile = (await _context.ProfileModel.FirstOrDefaultAsync(m => m.Id.Equals(profileModel.Id)));
             profileModel.UserAppearance.ProfileModelId = profileModel.Id;
             profileModel.UserInterests.ProfileModelId = profileModel.Id;
-            //profileModel.UserPreference.ProfileModelId = profileModel.Id;
+            profileModel.UserPreference.ProfileModelId = profileModel.Id;
+
+
 
             if (ModelState.IsValid)
             { 
@@ -157,8 +202,9 @@ namespace HelloDarlingMVC3.Controllers
                     {
                         await profileModel.ImageFile.CopyToAsync(fileStream);
                     }
-                    profileModel.ImageFile = null;
+                    //profileModel.ImageFile = null;
                 }
+                //profileModel.ImageName = extraProfile.ImageName;
                 try
                 {
                     _context.Update(profileModel);
@@ -175,7 +221,10 @@ namespace HelloDarlingMVC3.Controllers
                         throw;
                     }
                 }
-                return View("Index", profileModel);
+                //return View("Index");
+
+                return RedirectToAction("Index");
+
             }
             return View(profileModel);
         }

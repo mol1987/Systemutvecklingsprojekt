@@ -110,42 +110,51 @@ body {
 
 
 #mySidenav a {
-    position: absolute;
+    position: fixed;
     left: -160px;
-    transition: 1s;
     padding: 15px;
     width: 230px;
     text-decoration: none;
     font-size: 20px;
     border-radius: 0 10px 10px 0;
     color: transparent;
-    border: 0.5px solid #2E3232;
+    border: 0.5px solid #3DA8BD;
+    transition: 1s;
+    font-family: 'Lobster', cursive;
+    z-index: 1;
 }
 
     #mySidenav a:hover {
         left: 0;
-        color: #2E3232;
+        color: #F6ECEF;
+        
     }
-
+/*
 #Home {
+    top: 130px;
+    background-color: #3DA8BD;
+    color: #F6ECEF;
+}*/
+
+#Profile {
     top: 130px;
     background-color: #3DA8BD;
     color: #F6ECEF;
 }
 
-#Profile {
+#Candidate {
     top: 205px;
     background-color: #3DA8BD;
     color: #F6ECEF;
 }
 
-#Candidate {
+#Relationship {
     top: 280px;
     background-color: #3DA8BD;
     color: #F6ECEF;
 }
 
-#Relationship {
+#Settings {
     top: 355px;
     background-color: #3DA8BD;
     color: #F6ECEF;
@@ -157,3 +166,4 @@ a img {
     position: absolute;
     right: 20px;
 }
+

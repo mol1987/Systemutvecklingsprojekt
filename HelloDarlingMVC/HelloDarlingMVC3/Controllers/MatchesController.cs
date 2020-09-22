@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace HelloDarlingMVC3.Controllers
@@ -21,8 +22,11 @@ namespace HelloDarlingMVC3.Controllers
         // GET: Matches
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Match.Include(m => m.Profile1).Include(m => m.Profile2);
-            return View(await applicationDbContext.ToListAsync());
+            var userID = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value);
+            var ShowPotentialMatch = _context.Match.Where(m => m.Profile2Id == userID);
+            //var ShowPotentialMatchProfiles =  
+
+            return View(await _context.ProfileModel.ToListAsync());
         }
 
         // GET: Matches/Details/5
