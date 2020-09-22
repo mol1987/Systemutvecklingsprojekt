@@ -35,10 +35,12 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Profile1.Id)
+                    @Html.DisplayFor(modelItem => item.Profile1.FirstName)
+                    @Html.DisplayFor(modelItem => item.Profile1.LastName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Profile2.Id)
+                    @Html.DisplayFor(modelItem => item.Profile2.FirstName)
+                    @Html.DisplayFor(modelItem => item.Profile2.LastName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.MatchDate)
@@ -50,7 +52,7 @@
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id= item.Profile1Id}) |
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Profile1Id }) |
                     @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
                 </td>
