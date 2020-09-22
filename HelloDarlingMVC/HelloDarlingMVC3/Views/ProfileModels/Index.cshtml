@@ -21,7 +21,7 @@
                     <input asp-for=@Model.ImageName class="form-control" type="text" id="formGroupExampleInput" placeholder="" disabled>
                     <span asp-validation-for="@Model.ImageName class=" text-danger"></span>
                 </div>
-                <img src="@("~/image/" + Model.ImageName)" asp-append-version="true" height="255" width="255" />
+                <img src="@("~/image/" + Model.ImageName)"  asp-append-version="true" class="rounded"  height="255" width="255" />
             </div>
 
             <div class="col">

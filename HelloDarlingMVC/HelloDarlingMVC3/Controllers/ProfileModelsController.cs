@@ -48,8 +48,6 @@ namespace HelloDarlingMVC3.Controllers
         {
             var userID= Guid.Parse(User.Claims.FirstOrDefault(x => x.Type==ClaimTypes.NameIdentifier).Value);
             var profile = _context.ProfileModel.FirstOrDefault(x => x.Id.Equals(userID));
-            //var username = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name);
-            //var profileUsername = _context.ProfileModel.FirstOrDefault(x => x.Username.Equals(username));
 
 
             if (profile ==null)
