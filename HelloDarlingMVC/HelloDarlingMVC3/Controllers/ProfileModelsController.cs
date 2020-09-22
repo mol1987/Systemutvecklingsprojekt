@@ -185,8 +185,8 @@ namespace HelloDarlingMVC3.Controllers
             //var extraProfile = (await _context.ProfileModel.FirstOrDefaultAsync(m => m.Id.Equals(profileModel.Id)));
             profileModel.UserAppearance.ProfileModelId = profileModel.Id;
             profileModel.UserInterests.ProfileModelId = profileModel.Id;
-            
-            //profileModel.UserPreference.ProfileModelId = profileModel.Id;
+            profileModel.UserPreference.ProfileModelId = profileModel.Id;
+
 
 
             if (ModelState.IsValid)
