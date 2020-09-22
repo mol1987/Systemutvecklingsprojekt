@@ -30,11 +30,6 @@
             </div>
 
                 <div class="col">
-                    <div class="form-group">
-                        <label for="formGroupExampleInput">Användarnamn</label>
-                        <input asp-for=@User.Identity.Name class="form-control" type="text" id="formGroupExampleInput" placeholder="" disabled>
-                        <span asp-validation-for="@User.Identity.Name class=" text-danger"></span>
-                    </div>
 
                     <div class="form-group">
                         <label for="formGroupExampleInput">Förnamn</label>
@@ -46,11 +41,7 @@
                         <input asp-for=@Model.LastName class="form-control" type="text" id="formGroupExampleInput" placeholder="" disabled>
                         <span asp-validation-for="@Model.LastName class=" text-danger"></span>
                     </div>
-                    <div class="form-group">
-                        <label for="formGroupExampleInput">Personnummer (12 siffror)</label>
-                        <input asp-for=@Model.IdentityNO class="form-control" type="text" id="formGroupExampleInput" placeholder="" disabled>
-                        <span asp-validation-for="@Model.IdentityNO class=" text-danger"></span>
-                    </div>
+                    
                 </div>
 
                 <div class="container">
@@ -65,8 +56,8 @@
                                     <option>Malmö</option>
                                     <option>Lund</option>
                                     <option>Göteborg</option>
-                                    <option>Göteborg</option>
-                                    <option>Göteborg</option>
+                                    <option>Luleå</option>
+                                    <option>Umeå</option>
 
                                     <option>Göteborg</option>
                                     <option>Göteborg</option>
