@@ -13,16 +13,50 @@
     </form>
 </nav>
 
-<div class="card-deck">
-    <div class="card">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-muted">Match 2020-09-21</small></p>
+<h4>Kontaktförfrågningar</h4>
+@foreach (var item in Model)
+{
+    @if (item.Status == 1)
+    {
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="@("~/image/" + item.Profile1.ImageName)" height="230" width="300" asp-append-version="true" class="card-img" alt="Responsive image">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.Profile1.FirstName)</h5>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.Profile1.Bio)</p>
+                        <p class="card-text"><small class="text-muted">Plats: @Html.DisplayFor(modelItem => item.Profile1.Place)</small></p>
+                        <a asp-controller="ProfileModels" asp-action="Profiles" asp-route-id="@item.Profile1.Id" type="button" class="btn btn-info">Gå till profil</a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-
+    }
+}
+<h3>Kontakter</h3>
+@foreach (var item in Model)
+{
+    @if (item.Status == 2)
+    {
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="@("~/image/" + item.Profile1.ImageName)" height="230" width="300" asp-append-version="true" class="card-img" alt="Responsive image">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.Profile1.FirstName)</h5>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.Profile1.Bio)</p>
+                        <p class="card-text"><small class="text-muted">Plats: @Html.DisplayFor(modelItem => item.Profile1.Place)</small></p>
+                        <a asp-controller="ProfileModels"  asp-action="Profiles" asp-route-id="@item.Profile1.Id" type="button" class="btn btn-info">Gå till profil</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
 
 @*<h1>Index</h1>
 

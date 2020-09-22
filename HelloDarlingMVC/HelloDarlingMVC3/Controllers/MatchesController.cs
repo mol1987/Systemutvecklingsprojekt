@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace HelloDarlingMVC3.Controllers
@@ -21,9 +23,72 @@ namespace HelloDarlingMVC3.Controllers
         // GET: Matches
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Match.Include(m => m.Profile1).Include(m => m.Profile2);
-            return View(await applicationDbContext.ToListAsync());
+            //var applicationDbContext = _context.Match.Include(m => m.Profile1).Include(m => m.Profile2);
+
+            var personId = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value);
+            var matches = _context.Match.Where(www => www.Profile2Id == personId).ToList();
+            
+            List<ProfileModel> potentialMatches = new List<ProfileModel>();
+            List<ProfileModel> allMatches = new List<ProfileModel>();
+
+            foreach (var item in matches)
+            {
+                if (item.Status == 1)
+                {
+                    potentialMatches.Add(_context.ProfileModel.FirstOrDefault(x => x.Id.Equals(item.Profile1Id)));
+                }
+                else if (item.Status == 2)
+                {
+                    allMatches.Add(_context.ProfileModel.FirstOrDefault(x => x.Id.Equals(item.Profile1Id)));
+                }
+            }
+
+            return View(matches);
         }
+
+        public async Task<IActionResult> CreateMatch(Guid? id)
+        {
+            var userId = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value);
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            Match match = await _context.Match
+                .Include(m => m.Profile1)
+                .Include(m => m.Profile2)
+                .FirstOrDefaultAsync(m => m.Profile1Id == userId && (m.Profile2Id == id));
+            Match matched = await _context.Match
+                .Include(m => m.Profile1)
+                .Include(m => m.Profile2)
+                .FirstOrDefaultAsync(m => (m.Profile2Id == userId) && (m.Profile1Id == id));
+            if (match == null && matched == null)
+            {
+                match = new Match();
+                match.MatchDate = DateTime.Now;
+                match.Profile1Id = userId;
+                match.Profile2Id = Guid.Parse(id.ToString());
+                match.Status = 1;
+                _context.Match.Add(match);
+            } else if (match == null && matched != null)
+            {
+                match = new Match();
+                match.MatchDate = DateTime.Now;
+                match.Profile1Id = userId;
+                match.Profile2Id = Guid.Parse(id.ToString());
+                match.Status = 2;
+                matched.Status = 2;
+                _context.Match.Add(match);
+                _context.Update(matched);
+            }  else
+            {
+                return View();
+            }  
+            await _context.SaveChangesAsync();
+
+            return View();
+        }
+
 
         // GET: Matches/Details/5
         public async Task<IActionResult> Details(Guid? id)
