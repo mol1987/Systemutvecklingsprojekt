@@ -26,32 +26,6 @@ namespace HelloDarlingMVC3.Controllers
             _hostEnvironment = hostEnvironment;
         }
 
-
-        // POST: Send contact request
-        public async Task<IActionResult> ContactRequest(Guid Id)
-        {
-
-            var userID = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value);
-            var profile = _context.ProfileModel.FirstOrDefault(x => x.Id.Equals(userID));
-
-            var potentialCandidate = _context.ProfileModel.FirstOrDefault(x => x.Id.Equals(Id));
-
-            var potentialMatch = new Match();
-            //This is ID for profile that is signed in
-            potentialMatch.Profile1Id = profile.Id;
-            //This is ID for potential candidate                 
-            potentialMatch.Profile2Id = potentialCandidate.Id;
-            //time when request is been sent
-            potentialMatch.MatchDate = DateTime.Now;
-            //1=Sent request 2=match 3=ingnored
-            potentialMatch.Status = 1;
-
-            _context.Add(potentialMatch);
-            await _context.SaveChangesAsync();
-
-            return View(profile);
-        }
-
         // GET: ProfileModels
         public async Task<IActionResult> Profiles(Guid Id)
         {
