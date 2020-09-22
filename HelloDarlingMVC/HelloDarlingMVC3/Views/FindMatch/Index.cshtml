@@ -26,7 +26,7 @@
                 <h5 class="card-title">@Html.DisplayFor(modelItem => item.FirstName)</h5>
                 <p class="card-text">@Html.DisplayFor(modelItem => item.Bio)</p>
                 <p class="card-text"><small class="text-muted">Plats: @Html.DisplayFor(modelItem => item.Place)</small></p>
-                <button asp-controller="ProfileModels" asp-action="Profiles/(@Html.DisplayFor(modelItem => item.Id)" type="button" class="btn btn-info">Gå till profil</button>
+                <a asp-controller="ProfileModels" asp-action="Profiles" asp-route-id="@item.Id" type="button" class="btn btn-info">Gå till profil</a>
             </div>
         </div>
     </div>
@@ -34,93 +34,3 @@
 }
 
 
-    @*<h1>Index</h1>
-
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.IdentityNO)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.LastName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FileName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ImageName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.UsersCategory)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.JoinDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Place)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Gender)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Status)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Bio)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IdentityNO)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FirstName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LastName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FileName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ImageName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UsersCategory)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.JoinDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Place)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Gender)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Status)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Bio)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>*@
