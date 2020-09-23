@@ -27,6 +27,22 @@ namespace HelloDarlingMVC3.Controllers
             _hostEnvironment = hostEnvironment;
         }
 
+        public async Task<IActionResult> Messages(Guid Id)
+        {
+            var messages = await _context.Conversations.Where(x => x.ConversationsId.Equals(Id)).ToListAsync();
+
+            return View(messages);
+        }
+
+
+        public async Task<IActionResult> CreateMessages(Messages message)
+        {
+            //message.ConversationsMessages.
+            //var userConversation = _context.Messages.Add(x => x.ConversationsId.Equals(Id));
+
+
+            return View();
+        }
         // GET: ProfileModels
         public async Task<IActionResult> Profiles(Guid Id)
         {
