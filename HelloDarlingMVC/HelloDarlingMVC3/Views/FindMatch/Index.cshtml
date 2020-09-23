@@ -4,7 +4,6 @@
     ViewData["Title"] = "Index";
 }
 
-<h3>Sök match</h3>
 
 <nav class="navbar navbar-light ">
     <form class="form-inline">
@@ -12,9 +11,13 @@
         {
 
             @Html.RadioButton("searchType", "Alla", true) <text>Alla </text>
+            <p></p>
             @Html.RadioButton("searchType", "Män") <text>Män </text>
+            <p></p>
             @Html.RadioButton("searchType", "Kvinnor") <text>Kvinnor </text>
+            <p></p>
             @Html.RadioButton("searchType", "Annat") <text>Annat </text><br />
+            <p></p>
             @Html.TextBox("Search") <input type="submit" value="Sök" class="btn btn-outline-info my-2 my-sm-0" />
         }
     </form>
