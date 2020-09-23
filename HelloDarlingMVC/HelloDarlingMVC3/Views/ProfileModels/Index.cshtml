@@ -266,8 +266,8 @@
             <div class="col">
 
                 <div class="form-group">
-                    <label for="exampleFormControlSelect1">Åld (måste fixa till att ha range)</label>
-                    <select asp-for=@Model.UserInterests.Books class="form-control" id="exampleFormControlSelect1">
+                    <label for="exampleFormControlSelect1">Åld</label>
+                    <select asp-for=@Model.UserPreference.Age class="form-control" id="exampleFormControlSelect1">
                         <option>Välj åld</option>
                         <option>18-25</option>
                         <option>25-30</option>
@@ -281,7 +281,7 @@
 
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Kön</label>
-                    <select asp-for=@Model.UserInterests.Movies class="form-control" id="exampleFormControlSelect1">
+                    <select asp-for=@Model.UserPreference.PreferredGender class="form-control" id="exampleFormControlSelect1">
                         <option>Välj kön</option>
                         <option>Kvinnor</option>
                         <option>Män</option>

@@ -1,0 +1,13 @@
+﻿@model HelloDarlingMVC3.Models.ProfileModel
+
+@{
+    ViewData["Title"] = "Contact request";
+}
+
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">Kontaktförfrågan har skickats</h5>
+        <p class="card-text">Om andra användare godkänner din kontaktförfrågan kommer du se hennes/hans profil under "Matchingar".</p>
+        <a asp-controller="FindMatch" asp-action="Index" type="button" class="btn btn-info">Tillbaka till sök</a>
+    </div>
+</div>
