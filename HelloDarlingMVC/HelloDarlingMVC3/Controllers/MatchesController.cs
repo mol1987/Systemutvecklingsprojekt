@@ -46,6 +46,28 @@ namespace HelloDarlingMVC3.Controllers
             return View(matches);
         }
 
+        //public async Task<IActionResult> ActivateMatchAgain(Guid? id)
+        //{
+        //    var userId = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value);
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    Match matched = await _context.Match
+        //    .Include(m => m.Profile1)
+        //    .Include(m => m.Profile2)
+        //    .FirstOrDefaultAsync(m => (m.Profile2Id == userId) && (m.Profile1Id == id));
+        //    if (matched != null)
+        //    {
+        //        matched.Status = 2;
+        //        _context.Match.Update(matched);
+        //        await _context.SaveChangesAsync();
+        //    }
+
+        //    return RedirectToAction(nameof(Index));
+        //}
+
         public async Task<IActionResult> RejectMatch(Guid? id)
         {
             var userId = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value);

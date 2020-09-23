@@ -51,15 +51,15 @@ namespace HelloDarlingMVC3.Controllers
             }
 
 
-
-
             var userID = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value);
             var profile = _context.ProfileModel.FirstOrDefault(x => x.Id.Equals(userID));
+
 
             CandidateList.Remove(profile);
 
             return View(CandidateList);
         }
+
 
         // GET: FindMatch/Details/5
         public async Task<IActionResult> Details(Guid? id)

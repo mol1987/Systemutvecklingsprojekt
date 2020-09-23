@@ -22,9 +22,9 @@
                         </svg>
                     </a>
                     <p></p>
-                    <p>Hur väl ni matchar:</p>
+                    <span class="badge badge-pill badge-secondary">Hur väl ni matchar</span>
                     <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: @Model.MatchingValue%" aria-valuenow="@Model.MatchingValue" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-success" role="progressbar" style="width: @Model.MatchingValue%" aria-valuenow="@Model.MatchingValue" aria-valuemin="0" aria-valuemax="100">@Model.MatchingValue%</div>
                     </div>
                 </div>
             </div>
