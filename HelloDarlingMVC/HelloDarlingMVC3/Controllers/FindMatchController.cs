@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HelloDarlingMVC3.Data;
 using HelloDarlingMVC3.Models;
+using System.Security.Claims;
 
 namespace HelloDarlingMVC3.Controllers
 {
@@ -22,7 +23,14 @@ namespace HelloDarlingMVC3.Controllers
         // GET: FindMatch
         public async Task<IActionResult> Index()
         {
-            return View(await _context.ProfileModel.ToListAsync());
+            var userID = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value);
+            var profile = _context.ProfileModel.FirstOrDefault(x => x.Id.Equals(userID));
+
+            var CandidateList = await _context.ProfileModel.ToListAsync();
+
+            CandidateList.Remove(profile);
+
+            return View(CandidateList);
         }
 
         // GET: FindMatch/Details/5
