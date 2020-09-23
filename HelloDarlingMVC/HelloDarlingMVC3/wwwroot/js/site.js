@@ -3,3 +3,7 @@
 
 // Write your JavaScript code.
 
+function btnSaveAlert() {
+    alert('Du har nu sparat din profil');
+
+}
