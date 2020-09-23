@@ -55,36 +55,11 @@
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Plats</label>
                                 <input asp-for=@Model.Place class="form-control" id="exampleFormControlSelect1" disabled>
-                                    @*<option> Välj</option>
-                                    <option> Stockholm</option>
-                                    <option>Uppsala</option>
-                                    <option>Malmö</option>
-                                    <option>Lund</option>
-                                    <option>Göteborg</option>
-                                    <option>Luleå</option>
-                                    <option>Umeå</option>
-
-                                    <option>Göteborg</option>
-                                    <option>Göteborg</option>
-                                    <option>Göteborg</option>
-                                    <option>Göteborg</option>
-                                    <option>Göteborg</option>
-                                    <option>Göteborg</option>
-                                    <option>Göteborg</option>
-                                    <option>Göteborg</option>
-                                    <option>Göteborg</option>
-                                    <option>Göteborg</option>
-                                </select>*@
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Kön</label>
                                 <input asp-for=@Model.Gender class="form-control" id="exampleFormControlSelect1" disabled>
-                                    @*<option> Välj</option>
-                                    <option>Kvinna</option>
-                                    <option>Man</option>
-                                    <option>Annat</option>
-                                </select>*@
                             </div>
                         </div>
 
@@ -138,12 +113,6 @@
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Hårfärg</label>
                     <input asp-for=@Model.UserAppearance.HairColor class="form-control" id="exampleFormControlSelect1" disabled>
-                        @*<option>Välj färg</option>
-                        <option>Blond</option>
-                        <option>Brunett</option>
-                        <option>Svart</option>
-                        <option>Skallig</option>*@
-                    @*</input>*@
                 </div>
 
             </div>
@@ -153,12 +122,6 @@
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Ögonfärg</label>
                     <input asp-for=@Model.UserAppearance.EyeColor class="form-control" id="exampleFormControlSelect1" disabled>
-                        @*<option>Välj färg</option>
-                        <option>Blå</option>
-                        <option>Grön</option>
-                        <option>Brun</option>
-                        <option>Blandat</option>
-                    </select>*@
                 </div>
 
 
@@ -181,11 +144,6 @@
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Litteratur</label>
                     <input asp-for=@Model.UserInterests.Books class="form-control" id="exampleFormControlSelect1" disabled>
-                        @*<option>Välj genre</option>
-                        <option>Fakta</option>
-                        <option>Skönliteratur</option>
-                        <option>Äventyr</option>
-                    </select>*@
                 </div>
 
             </div>
@@ -195,11 +153,6 @@
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Film</label>
                     <input asp-for=@Model.UserInterests.Movies class="form-control" id="exampleFormControlSelect1" disabled>
-                        @*<option>Välj genre</option>
-                        <option>Fakta</option>
-                        <option>Skönlitteratur</option>
-                        <option>Äventyr</option>
-                    </select>*@
                 </div>
 
             </div>
@@ -209,11 +162,6 @@
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Musik</label>
                     <input asp-for=@Model.UserInterests.Music class="form-control" id="exampleFormControlSelect1" disabled>
-                        @*<option>Välj genre</option>
-                        <option>Rock</option>
-                        <option>Indie</option>
-                        <option>Klassik</option>
-                    </select>*@
                 </div>
 
             </div>
@@ -230,10 +178,6 @@
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Bilar</label>
                     <input asp-for=@Model.UserInterests.Cars class="form-control" id="exampleFormControlSelect1" disabled>
-                        @*<option>Välj</option>
-                        <option>Volvo</option>
-                        <option>Saab</option>
-                    </select>*@
                 </div>
 
             </div>
@@ -243,62 +187,27 @@
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Tv-spel</label>
                     <input asp-for=@Model.UserInterests.TVgame class="form-control" id="exampleFormControlSelect1" disabled>
-                        @*<option>Välj spel</option>
-                        <option>Super Mario</option>
-                        <option>CS</option>
-                    </select>*@
+                </div>
+            </div>
+
+            <div class="col">
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Aktiviteter</label>
+                    <input asp-for=@Model.UserInterests.Sports class="form-control" id="exampleFormControlSelect1" disabled>
+                </div>
+            </div>
+
+            <div class="col">
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Språk</label>
+                    <input asp-for=@Model.UserInterests.Sports class="form-control" id="exampleFormControlSelect1" disabled>
                 </div>
             </div>
         </div>
 
     </div>
-
-
-    @*<div class="col">
-        <p>
-            <div class="form-group">
-                <span class="badge badge-pill badge-info">Vad jag söker</span>
-            </div>
-        </p>
-    </div>*@
-
-    @*<div class="container">
-        <div class="row">
-            <div class="col">
-
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1">Åld (måste fixa till att ha range)</label>
-                    <select asp-for=@Model.UserInterests.Books class="form-control" id="exampleFormControlSelect1">
-                        <option>Välj åld</option>
-                        <option>18-25</option>
-                        <option>25-30</option>
-                        <option>30-35</option>
-                        <option>35-40</option>
-                        <option>40-45</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col">
-
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1">Kön</label>
-                    <select asp-for=@Model.UserInterests.Movies class="form-control" id="exampleFormControlSelect1">
-                        <option>Välj kön</option>
-                        <option>Kvinnor</option>
-                        <option>Män</option>
-                        <option>Annat</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-
-    </div>
-    <div class="container">
-        <div class="row justify-content-end">
-            <input type="submit" value="Spara" class="btn btn-dark" />
-        </div>
-    </div>*@
 </form>
 
 
