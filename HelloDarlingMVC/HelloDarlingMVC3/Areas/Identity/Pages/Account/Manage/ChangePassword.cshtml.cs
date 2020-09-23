@@ -91,8 +91,8 @@ namespace HelloDarlingMVC3.Areas.Identity.Pages.Account.Manage
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            _logger.LogInformation("User changed their password successfully.");
-            StatusMessage = "Your password has been changed.";
+            _logger.LogInformation("Användaren har ändrat sitt lösenord.");
+            StatusMessage = "Ditt lösenord har ändrats.";
 
             return RedirectToPage();
         }
