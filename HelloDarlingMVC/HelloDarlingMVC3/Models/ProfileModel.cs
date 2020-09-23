@@ -30,12 +30,15 @@ namespace HelloDarlingMVC3.Models
         [NotMapped] 
         public IFormFile ImageFile { get; set; }
 
+        [NotMapped]
+        public int MatchingValue { get; set; }
+
+        public int? Age { get; set; }
 
         public int? UsersCategory { get; set; }
 
         public DateTime JoinDate { get; set; }
 
-        [Column(TypeName = "varchar(64)")]
         public string Place { get; set; }
 
         public string Gender { get; set; }

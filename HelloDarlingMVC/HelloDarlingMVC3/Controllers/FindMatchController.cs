@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HelloDarlingMVC3.Data;
 using HelloDarlingMVC3.Models;
+using System.Security.Claims;
 
 namespace HelloDarlingMVC3.Controllers
 {
@@ -20,10 +21,45 @@ namespace HelloDarlingMVC3.Controllers
         }
 
         // GET: FindMatch
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchType, string Search)
         {
-            return View(await _context.ProfileModel.ToListAsync());
+            List<ProfileModel> CandidateList;
+            if (searchType == "Alla")
+            {
+                CandidateList = await _context.ProfileModel.Where(x => x.FirstName.StartsWith(Search) || Search == null).ToListAsync();
+        
+            }
+            else if (searchType == "Män")
+            {
+                CandidateList = await _context.ProfileModel.Where(x => x.FirstName.StartsWith(Search) && x.Gender == "man" || Search == null && x.Gender == "man").ToListAsync();
+            
+            }
+            else if (searchType == "Kvinnor")
+            {
+                CandidateList = await _context.ProfileModel.Where(x => x.FirstName.StartsWith(Search) && x.Gender == "kvinna" || Search == null && x.Gender == "kvinna").ToListAsync();
+             
+            }
+            else if (searchType == "Annat")
+            {
+                CandidateList = await _context.ProfileModel.Where(x => x.FirstName.StartsWith(Search) && x.Gender == "Annat" || Search == null && x.Gender == "Annat").ToListAsync();
+           
+            }
+            else
+            {
+                CandidateList = await _context.ProfileModel.Where(x => x.FirstName.StartsWith(Search) || Search == null).ToListAsync();
+          
+            }
+
+
+            var userID = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value);
+            var profile = _context.ProfileModel.FirstOrDefault(x => x.Id.Equals(userID));
+
+
+            CandidateList.Remove(profile);
+
+            return View(CandidateList);
         }
+
 
         // GET: FindMatch/Details/5
         public async Task<IActionResult> Details(Guid? id)

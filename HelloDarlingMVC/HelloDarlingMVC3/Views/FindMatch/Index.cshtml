@@ -8,29 +8,39 @@
 
 <nav class="navbar navbar-light ">
     <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Sök" aria-label="Search">
-        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Sök</button>
+        @using (Html.BeginForm("Index", "Findmaatch", FormMethod.Get))
+        {
+
+            @Html.RadioButton("searchType", "Alla", true) <text>Alla </text>
+            @Html.RadioButton("searchType", "Män") <text>Män </text>
+            @Html.RadioButton("searchType", "Kvinnor") <text>Kvinnor </text>
+            @Html.RadioButton("searchType", "Annat") <text>Annat </text><br />
+            @Html.TextBox("Search") <input type="submit" value="Sök" class="btn btn-outline-info my-2 my-sm-0" />
+        }
     </form>
 </nav>
 
 @foreach (var item in Model)
 {
 
-<div class="card mb-3" style="max-width: 540px;">
-    <div class="row no-gutters">
-        <div class="col-md-4">
-            <img src="@("~/image/" + item.ImageName)" height="230" width="300" asp-append-version="true" class="card-img" alt="Responsive image" >
-        </div>
-        <div class="col-md-8">
-            <div class="card-body">
-                <h5 class="card-title">@Html.DisplayFor(modelItem => item.FirstName)</h5>
-                <p class="card-text">@Html.DisplayFor(modelItem => item.Bio)</p>
-                <p class="card-text"><small class="text-muted">Plats: @Html.DisplayFor(modelItem => item.Place)</small></p>
-                <a asp-controller="ProfileModels" asp-action="Profiles" asp-route-id="@item.Id" type="button" class="btn btn-info">Gå till profil</a>
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="@("~/image/" + item.ImageName)" height="230" width="300" asp-append-version="true" class="card-img" alt="Responsive image">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.Age)</h5>
+                    <p class="card-text">@Html.DisplayFor(modelItem => item.Bio)</p>
+                    <p class="card-text"><small class="text-muted">Plats: @Html.DisplayFor(modelItem => item.Place)</small></p>
+                    <a asp-controller="ProfileModels" asp-action="Profiles" asp-route-id="@item.Id" type="button" class="btn btn-info">Gå till profil</a>
+                    <p></p>
+                        <div  class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: @Html.DisplayFor(modelItem => item.MatchingValue)%" aria-valuenow="@Html.DisplayFor(modelItem => item.MatchingValue)" aria-valuemin="0" aria-valuemax="100">@Html.DisplayFor(modelItem => item.MatchingValue)%</div>
+                        </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 }
-
 

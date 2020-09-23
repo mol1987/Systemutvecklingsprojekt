@@ -1,10 +1,8 @@
-﻿
-@model IEnumerable<HelloDarlingMVC3.Models.ProfileModel>
+﻿@model IEnumerable<HelloDarlingMVC3.Models.Match>
+
 @{
     ViewData["Title"] = "Index";
 }
-
-<h3>Mina match</h3>
 
 <nav class="navbar navbar-light ">
     <form class="form-inline">
@@ -13,38 +11,102 @@
     </form>
 </nav>
 
+<h3><span class="badge badge-pill badge-dark">Kontaktförfrågningar</span></h3>
+
 @foreach (var item in Model)
 {
+    @if (item.Status == 1)
+    {
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="@("~/image/" + item.Profile1.ImageName)" height="230" width="300" asp-append-version="true" class="card-img" alt="Responsive image">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.Profile1.FirstName)</h5>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.Profile1.Bio)</p>
+                        <p class="card-text"><small class="text-muted">Plats: @Html.DisplayFor(modelItem => item.Profile1.Place)</small></p>
+                        <a asp-controller="Matches" asp-action="CreateMatch" asp-route-id="@item.Profile1Id" type="button" class="btn btn-danger">
+                            Godkänn
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                            </svg>
+                        </a>
+                        <a asp-controller="Matches" asp-action="RejectMatch" asp-route-id="@item.Profile1Id" type="button" class="btn btn-dark">
+                            Godkänn ej
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x-octagon-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zm-6.106 4.5a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
+                            </svg>
+                        </a>
+                        <p></p>
+                        <a asp-controller="ProfileModels" asp-action="Profiles" asp-route-id="@item.Profile1.Id" type="button" class="btn btn-info">Gå till profil</a>
 
-    <div class="card mb-3" style="max-width: 540px;">
-        <div class="row no-gutters">
-            <div class="col-md-4">
-                <img src="@("~/image/" + item.ImageName)" height="230" width="300" asp-append-version="true" class="card-img" alt="Responsive image">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.FirstName)</h5>
-                    <p class="card-text">@Html.DisplayFor(modelItem => item.Bio)</p>
-                    <p class="card-text"><small class="text-muted">Plats: @Html.DisplayFor(modelItem => item.Place)</small></p>
-                    <a asp-controller="ProfileModels" asp-action="Profiles" asp-route-id="@item.Id" type="button" class="btn btn-danger">
-                        Godkänn
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-                        </svg>
-                    </a>
-                    <a asp-controller="ProfileModels" asp-action="Profiles" asp-route-id="@item.Id" type="button" class="btn btn-dark">
-                        Godkänn ej
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x-octagon-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zm-6.106 4.5a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
-                        </svg>
-                    </a>
-                    <p></p>
-                    <a asp-controller="ProfileModels" asp-action="Profiles" asp-route-id="@item.Id" type="button" class="btn btn-info">Titta på profil</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    }
 }
+<h3><span class="badge badge-pill badge-danger">Matchningar</span></h3>
+@foreach (var item in Model)
+{
+    @if (item.Status == 2)
+    {
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="@("~/image/" + item.Profile1.ImageName)" height="230" width="300" asp-append-version="true" class="card-img" alt="Responsive image">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.Profile1.FirstName)</h5>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.Profile1.Bio)</p>
+                        <p class="card-text"><small class="text-muted">Plats: @Html.DisplayFor(modelItem => item.Profile1.Place)</small></p>
+                        <a asp-controller="ProfileModels" asp-action="Profiles" asp-route-id="@item.Profile1.Id" type="button" class="btn btn-info">Gå till profil</a>
+                        <p></p>
+                        <a asp-controller="ProfileModels" asp-action="Profiles" asp-route-id="@item.Profile1.Id" type="button" class="btn btn-outline-dark">
+                            Skicka meddelande
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-envelope" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383l-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+@*<h3><span class="badge badge-pill badge-secondary">Aktivera avvisat kontaktförfråga</span></h3>
+@foreach (var item in Model)
+{
+    @if (item.Status == 3)
+    {
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="@("~/image/" + item.Profile1.ImageName)" height="230" width="300" asp-append-version="true" class="card-img" alt="Responsive image">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.Profile1.FirstName)</h5>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.Profile1.Bio)</p>
+                        <p class="card-text"><small class="text-muted">Plats: @Html.DisplayFor(modelItem => item.Profile1.Place)</small></p>
+                        <a asp-controller="Matches" asp-action="ActivateMatchAgain" asp-route-id="@item.Profile1Id" type="button" class="btn btn-danger">
+                            Aktivera
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}*@
+
+
 
 @*<h1>Index</h1>
 
