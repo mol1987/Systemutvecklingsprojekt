@@ -204,3 +204,6 @@ a img {
         opacity: 0.4
     }
 
+.visited a:visited {
+    color: violet;
+}
