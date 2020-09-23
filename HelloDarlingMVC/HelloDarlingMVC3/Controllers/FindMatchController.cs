@@ -53,11 +53,66 @@ namespace HelloDarlingMVC3.Controllers
 
             var userID = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value);
             var profile = _context.ProfileModel.FirstOrDefault(x => x.Id.Equals(userID));
-
+            profile.UserInterests = _context.Interests.FirstOrDefault(x => x.ProfileModelId.Equals(userID));
 
             CandidateList.Remove(profile);
 
+
+            foreach (var item in CandidateList)
+            {
+                item.UserInterests = _context.Interests.FirstOrDefault(x => x.ProfileModelId.Equals(item.Id));
+                if (item.UserInterests == null) item.UserInterests = new Interests();
+                item.MatchingValue = MatchingValue(profile, item);
+            }
+
+
             return View(CandidateList);
+        }
+
+        public int MatchingValue(ProfileModel profile1, ProfileModel profile2)
+        {
+            int sum = 0;
+            int value = 0;
+
+            if (profile1.UserInterests.Language == profile2.UserInterests.Language)
+            {
+                value += 1;
+            }
+
+            if (profile1.UserInterests.Movies == profile2.UserInterests.Movies)
+            {
+                value += 1;
+            }
+
+            if (profile1.UserInterests.Music == profile2.UserInterests.Music)
+            {
+                value += 1;
+            }
+
+            if (profile1.UserInterests.Cars == profile2.UserInterests.Cars)
+            {
+                value += 1;
+            }
+
+            if (profile1.UserInterests.Books == profile2.UserInterests.Books)
+            {
+                value += 1;
+            }
+
+            if (profile1.UserInterests.TVgame == profile2.UserInterests.TVgame)
+            {
+                value += 1;
+            }
+
+            if (profile1.UserInterests.Sports == profile2.UserInterests.Sports)
+            {
+                value += 1;
+            }
+
+
+            sum = (int)((value / 7.0) * 100.0);
+
+            return sum;
         }
 
 
