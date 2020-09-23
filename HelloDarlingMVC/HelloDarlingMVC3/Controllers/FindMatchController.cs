@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HelloDarlingMVC3.Data;
 using HelloDarlingMVC3.Models;
+using System.Security.Claims;
 
 namespace HelloDarlingMVC3.Controllers
 {
@@ -20,37 +21,20 @@ namespace HelloDarlingMVC3.Controllers
         }
 
         // GET: FindMatch
-        public async Task<IActionResult> Index(string searchType, string Search)
+        public async Task<IActionResult> Index()
         {
-            if (searchType == "Alla")
-            {
-                var applicationDbContext = _context.ProfileModel.Where(x => x.FirstName.StartsWith(Search) || Search == null);
-                return View(await applicationDbContext.ToListAsync());
-            }
-            else if (searchType == "Män")
-            {
-                var applicationDbContext = _context.ProfileModel.Where(x => x.FirstName.StartsWith(Search) && x.Gender == "man" || Search == null && x.Gender == "man");
-                return View(await applicationDbContext.ToListAsync());
-            }
-            else if (searchType == "Kvinnor")
-            {
-                var applicationDbContext = _context.ProfileModel.Where(x => x.FirstName.StartsWith(Search) && x.Gender == "kvinna" || Search == null && x.Gender == "kvinna");
-                return View(await applicationDbContext.ToListAsync());
-            }
-            else if (searchType == "Annat")
-            {
-                var applicationDbContext = _context.ProfileModel.Where(x => x.FirstName.StartsWith(Search) && x.Gender == "Annat" || Search == null && x.Gender == "Annat");
-                return View(await applicationDbContext.ToListAsync());
-            }
-            else
-            {
-                var applicationDbContext = _context.ProfileModel.Where(x => x.FirstName.StartsWith(Search) || Search == null);
-                return View(await applicationDbContext.ToListAsync());
-            }
+            var userID = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value);
+            var profile = _context.ProfileModel.FirstOrDefault(x => x.Id.Equals(userID));
+
+            var CandidateList = await _context.ProfileModel.ToListAsync();
+
+            CandidateList.Remove(profile);
+
+            return View(CandidateList);
         }
 
-            // GET: FindMatch/Details/5
-            public async Task<IActionResult> Details(Guid? id)
+        // GET: FindMatch/Details/5
+        public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
             {
