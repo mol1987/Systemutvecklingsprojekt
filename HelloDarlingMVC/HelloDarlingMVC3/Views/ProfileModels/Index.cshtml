@@ -42,9 +42,9 @@
                     <span asp-validation-for="@Model.LastName class=" text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label for="formGroupExampleInput">Personnummer (12 siffror)</label>
-                    <input asp-for=@Model.IdentityNO class="form-control" type="text" id="formGroupExampleInput" placeholder="">
-                    <span asp-validation-for="@Model.IdentityNO class=" text-danger"></span>
+                    <label for="formGroupExampleInput">Ålder</label>
+                    <input asp-for=@Model.Age class="form-control" type="text" id="formGroupExampleInput" placeholder="">
+                    <span asp-validation-for="@Model.Age class=" text-danger"></span>
                 </div>
             </div>
 
@@ -54,15 +54,14 @@
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Plats</label>
                             <select asp-for=@Model.Place class="form-control" id="exampleFormControlSelect1">
-                                <option> Välj</option>
-                                <option> Stockholm</option>
+                                <option>Välj</option>
+                                <option>Stockholm</option>
                                 <option>Uppsala</option>
                                 <option>Malmö</option>
                                 <option>Lund</option>
                                 <option>Göteborg</option>
                                 <option>Luleå</option>
                                 <option>Umeå</option>
-
                                 <option>Östersund</option>
                                 <option>Gävle</option>
                                 <option>Örebro</option>
@@ -253,7 +252,7 @@
     </div>
 
 
-    <div class="col">
+    @*<div class="col">
         <p>
             <div class="form-group">
                 <span class="badge badge-pill badge-info">Vad jag söker</span>
@@ -289,10 +288,9 @@
                     </select>
                 </div>
             </div>
-        </div>
+        </div>*@
 
 
-    </div>
     <div class="container">
         <div class="row justify-content-end">
             <input type="submit" value="Spara" class="btn btn-dark" />
