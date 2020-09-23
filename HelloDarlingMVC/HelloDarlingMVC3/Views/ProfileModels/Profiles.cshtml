@@ -49,8 +49,8 @@
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Plats</label>
-                                <select asp-for=@Model.Place class="form-control" id="exampleFormControlSelect1">
-                                    <option> Välj</option>
+                                <input asp-for=@Model.Place class="form-control" id="exampleFormControlSelect1" disabled>
+                                    @*<option> Välj</option>
                                     <option> Stockholm</option>
                                     <option>Uppsala</option>
                                     <option>Malmö</option>
@@ -69,17 +69,17 @@
                                     <option>Göteborg</option>
                                     <option>Göteborg</option>
                                     <option>Göteborg</option>
-                                </select>
+                                </select>*@
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Kön</label>
-                                <select asp-for=@Model.Gender class="form-control" id="exampleFormControlSelect1">
-                                    <option> Välj</option>
+                                <input asp-for=@Model.Gender class="form-control" id="exampleFormControlSelect1" disabled>
+                                    @*<option> Välj</option>
                                     <option>Kvinna</option>
                                     <option>Man</option>
                                     <option>Annat</option>
-                                </select>
+                                </select>*@
                             </div>
                         </div>
 
@@ -102,7 +102,7 @@
     <div class="col">
         <p>
             <div class="form-group">
-                <textarea asp-for=@Model.Bio class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea asp-for=@Model.Bio class="form-control" id="exampleFormControlTextarea1" rows="3" disabled></textarea>
                 <span asp-validation-for="@Model.Bio class=" text-danger"></span>
             </div>
 
@@ -124,7 +124,7 @@
             <div class="col">
                 <div class="form-group">
                     <label for="formGroupExampleInput">Längde</label>
-                    <input asp-for=@Model.UserAppearance.Height class="form-control" type="text" id="formGroupExampleInput" placeholder="">
+                    <input asp-for=@Model.UserAppearance.Height class="form-control" type="text" id="formGroupExampleInput" placeholder="" disabled>
                     <span asp-validation-for="@Model.UserAppearance.Height class=" text-danger"></span>
                 </div>
             </div>
@@ -132,13 +132,13 @@
             <div class="col">
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Hårfärg</label>
-                    <select asp-for=@Model.UserAppearance.HairColor class="form-control" id="exampleFormControlSelect1">
-                        <option>Välj färg</option>
+                    <input asp-for=@Model.UserAppearance.HairColor class="form-control" id="exampleFormControlSelect1" disabled>
+                        @*<option>Välj färg</option>
                         <option>Blond</option>
                         <option>Brunett</option>
                         <option>Svart</option>
-                        <option>Skallig</option>
-                    </select>
+                        <option>Skallig</option>*@
+                    @*</input>*@
                 </div>
 
             </div>
@@ -146,14 +146,14 @@
             <div class="col">
 
                 <div class="form-group">
-                    <label for="exampleFormControlSelect1">Ögönfärg</label>
-                    <select asp-for=@Model.UserAppearance.EyeColor class="form-control" id="exampleFormControlSelect1">
-                        <option>Välj färg</option>
+                    <label for="exampleFormControlSelect1">Ögonfärg</label>
+                    <input asp-for=@Model.UserAppearance.EyeColor class="form-control" id="exampleFormControlSelect1" disabled>
+                        @*<option>Välj färg</option>
                         <option>Blå</option>
                         <option>Grön</option>
                         <option>Brun</option>
                         <option>Blandat</option>
-                    </select>
+                    </select>*@
                 </div>
 
 
@@ -175,12 +175,12 @@
 
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Litteratur</label>
-                    <select asp-for=@Model.UserInterests.Books class="form-control" id="exampleFormControlSelect1">
-                        <option>Välj genre</option>
+                    <input asp-for=@Model.UserInterests.Books class="form-control" id="exampleFormControlSelect1" disabled>
+                        @*<option>Välj genre</option>
                         <option>Fakta</option>
                         <option>Skönliteratur</option>
                         <option>Äventyr</option>
-                    </select>
+                    </select>*@
                 </div>
 
             </div>
@@ -189,12 +189,12 @@
 
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Film</label>
-                    <select asp-for=@Model.UserInterests.Movies class="form-control" id="exampleFormControlSelect1">
-                        <option>Välj genre</option>
+                    <input asp-for=@Model.UserInterests.Movies class="form-control" id="exampleFormControlSelect1" disabled>
+                        @*<option>Välj genre</option>
                         <option>Fakta</option>
                         <option>Skönlitteratur</option>
                         <option>Äventyr</option>
-                    </select>
+                    </select>*@
                 </div>
 
             </div>
@@ -203,12 +203,12 @@
 
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Musik</label>
-                    <select asp-for=@Model.UserInterests.Music class="form-control" id="exampleFormControlSelect1">
-                        <option>Välj genre</option>
+                    <input asp-for=@Model.UserInterests.Music class="form-control" id="exampleFormControlSelect1" disabled>
+                        @*<option>Välj genre</option>
                         <option>Rock</option>
                         <option>Indie</option>
                         <option>Klassik</option>
-                    </select>
+                    </select>*@
                 </div>
 
             </div>
@@ -224,11 +224,11 @@
 
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Bilar</label>
-                    <select asp-for=@Model.UserInterests.Cars class="form-control" id="exampleFormControlSelect1">
-                        <option>Välj</option>
+                    <input asp-for=@Model.UserInterests.Cars class="form-control" id="exampleFormControlSelect1" disabled>
+                        @*<option>Välj</option>
                         <option>Volvo</option>
                         <option>Saab</option>
-                    </select>
+                    </select>*@
                 </div>
 
             </div>
@@ -237,11 +237,11 @@
 
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Tv-spel</label>
-                    <select asp-for=@Model.UserInterests.TVgame class="form-control" id="exampleFormControlSelect1">
-                        <option>Välj spel</option>
+                    <input asp-for=@Model.UserInterests.TVgame class="form-control" id="exampleFormControlSelect1" disabled>
+                        @*<option>Välj spel</option>
                         <option>Super Mario</option>
                         <option>CS</option>
-                    </select>
+                    </select>*@
                 </div>
             </div>
         </div>
@@ -249,15 +249,15 @@
     </div>
 
 
-    <div class="col">
+    @*<div class="col">
         <p>
             <div class="form-group">
                 <span class="badge badge-pill badge-info">Vad jag söker</span>
             </div>
         </p>
-    </div>
+    </div>*@
 
-    <div class="container">
+    @*<div class="container">
         <div class="row">
             <div class="col">
 
@@ -293,7 +293,7 @@
         <div class="row justify-content-end">
             <input type="submit" value="Spara" class="btn btn-dark" />
         </div>
-    </div>
+    </div>*@
 </form>
 
 
