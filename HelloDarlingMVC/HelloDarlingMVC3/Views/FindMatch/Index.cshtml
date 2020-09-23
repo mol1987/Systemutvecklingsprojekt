@@ -23,7 +23,7 @@
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.FirstName)</h5>
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.Age)</h5>
                     <p class="card-text">@Html.DisplayFor(modelItem => item.Bio)</p>
                     <p class="card-text"><small class="text-muted">Plats: @Html.DisplayFor(modelItem => item.Place)</small></p>
                     <a asp-controller="ProfileModels" asp-action="Profiles" asp-route-id="@item.Id" type="button" class="btn btn-info">Gå till profil</a>
