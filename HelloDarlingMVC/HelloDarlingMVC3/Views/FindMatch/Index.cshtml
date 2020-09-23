@@ -15,25 +15,26 @@
 
 @foreach (var item in Model)
 {
-<div class="card mb-3" style="max-width: 540px;">
-    <div class="row no-gutters">
-        <div class="col-md-4">
-            <img src="@("~/image/" + item.ImageName)" height="230" width="300" asp-append-version="true" class="card-img" alt="Responsive image" >
-        </div>
-        <div class="col-md-8">
-            <div class="card-body">
-                <h5 class="card-title">@Html.DisplayFor(modelItem => item.FirstName)</h5>
-                <p class="card-text">@Html.DisplayFor(modelItem => item.Bio)</p>
-                <p class="card-text"><small class="text-muted">Plats: @Html.DisplayFor(modelItem => item.Place)</small></p>
-                <button asp-controller="ProfileModels" asp-action="Profiles/(@Html.DisplayFor(modelItem => item.Id)" type="button" class="btn btn-info">Gå till profil</button>
+
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="@("~/image/" + item.ImageName)" height="230" width="300" asp-append-version="true" class="card-img" alt="Responsive image">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.FirstName)</h5>
+                    <p class="card-text">@Html.DisplayFor(modelItem => item.Bio)</p>
+                    <p class="card-text"><small class="text-muted">Plats: @Html.DisplayFor(modelItem => item.Place)</small></p>
+                    <a asp-controller="ProfileModels" asp-action="Profiles" asp-route-id="@item.Id" type="button" class="btn btn-info">Gå till profil</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 }
 
 
-    @*<h1>Index</h1>
+@*<h1>Index</h1>
 
     <p>
         <a asp-action="Create">Create New</a>
