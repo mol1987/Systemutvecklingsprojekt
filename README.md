@@ -1,8 +1,10 @@
 # Systemutvecklingsprojekt 
 
 ## Upphovsman
-Grupp 3 
+Made by group 3 (Fredrik Molén, Elchin Jabbari, Aata Miettinen, Simon Järnström, Firas Hanna).
+
  ▲
+ 
 ▲ ▲
 
 ## Projektupplägg
