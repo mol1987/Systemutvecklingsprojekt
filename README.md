@@ -3,9 +3,13 @@
 ## Upphovsman
 Made by group 3 (Fredrik Molén, Elchin Jabbari, Aata Miettinen, Simon Järnström, Firas Hanna).
 
- ▲
- 
-▲ ▲
+## Technical info
+
+Written in C# and uses the ASP .NET CORE MVC.
+Uses localdb Microsoft SQL for the Database with Entity Framework.
+
+![Screenshot](https://github.com/mol1987/Systemutvecklingsprojekt/blob/master/Hello-Darling-matches.png)
+![Screenshot](https://github.com/mol1987/Systemutvecklingsprojekt/blob/master/Hello-darling-Search.png)
 
 ## Projektupplägg
 
